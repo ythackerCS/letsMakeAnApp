@@ -8,9 +8,15 @@
 
 import UIKit
 
+
+protocol CustomTabBarSizeDelegate {
+    func didPressButton(button:UIButton)
+}
+
 class CustomTabBarSize: UITabBar {
     
-
+//    var delegate2:CustomTabBarSizeDelegate!
+//
 //    override func sizeThatFits(_ size: CGSize) -> CGSize {
 //         var size = super.sizeThatFits(size)
 //         size.width = 50
@@ -41,13 +47,15 @@ class CustomTabBarSize: UITabBar {
 //        middleButton.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: 0)
 //    }
 //    
+//    
+//    
 //    func setupMiddleButton() {
 //       middleButton.frame.size = CGSize(width: 70, height: 60)
 //        middleButton.backgroundColor = UIColor(red: 154/255, green: 206/255, blue: 0/255, alpha: 1.0)
 //        middleButton.layer.cornerRadius = 10
 //        middleButton.layer.masksToBounds = true
-//        middleButton.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: 15)
-//        middleButton.addTarget(self, action: #selector(self.test), for: .touchUpInside)
+//        middleButton.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: 50)
+//        middleButton.addTarget(self, action: Selector(("buttonPress:")), for: .touchUpInside)
 //        let imageContainer = UIImageView.init()
 //        imageContainer.frame.size = CGSize(width: 45, height: 35)
 //        imageContainer.tintColor = UIColor(red: 77/255, green: 108/255, blue: 32/255, alpha: 1.0)
@@ -58,7 +66,10 @@ class CustomTabBarSize: UITabBar {
 //        
 //    }
 //  
-//    @objc func test() {
-//        
+//    func buttonPress(button:UIButton) {
+//        delegate2.didPressButton(button: middleButton)
 //    }
+//    
+    
 }
+

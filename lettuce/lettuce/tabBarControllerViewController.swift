@@ -8,7 +8,7 @@
 
 import UIKit
 
-class tabBarControllerViewController: UITabBarController, UITabBarControllerDelegate {
+class tabBarControllerViewController: UITabBarController, UITabBarControllerDelegate{
 
     let middleButton = UIButton()
     
@@ -16,6 +16,7 @@ class tabBarControllerViewController: UITabBarController, UITabBarControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        addStoreObj()
         
         self.delegate = self
         UITabBar.appearance().backgroundColor = UIColor(red: 104/255, green: 165/255, blue: 0/255, alpha: 1.0)
@@ -46,6 +47,17 @@ class tabBarControllerViewController: UITabBarController, UITabBarControllerDele
         
     }
     
+    
+//    func addStoreObj() {
+//        var store = CustomTabBarSize()
+//        store.delegate2 = self // IMPORTANT
+//        self.view.addSubview(store)
+//    }
+//
+//    func didPressButton(button:UIButton) {
+//        self.performSegue(withIdentifier: "showEvent", sender: nil)
+//    }
+//
     
     //https://stackoverflow.com/questions/30505165/uiview-touch-event-in-controller add gesture to view
     @objc func test(){

@@ -49,11 +49,11 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                     else {
                         myCell.eventImage.image = nil
-                        myCell.noImgLabel.isHidden = false
+//                        myCell.noImgLabel.isHidden = false
                     }
                 }
             }else{
-                myCell.noImgLabel.isHidden = false
+//                myCell.noImgLabel.isHidden = false
                 myCell.eventImage.image = nil
                 print("Couldn't parse url")
             }
