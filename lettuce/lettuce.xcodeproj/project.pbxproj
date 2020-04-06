@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		32711830241057E70049D827 /* UserAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3271182F241057E70049D827 /* UserAccountViewController.swift */; };
+		32711832241062CA0049D827 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32711831241062CA0049D827 /* AccountInfoViewController.swift */; };
+		32D0B820243AE0EF008F873F /* tabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0B81F243AE0EF008F873F /* tabBarControllerViewController.swift */; };
+		32D0B822243B0007008F873F /* CustomTabBarSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0B821243B0007008F873F /* CustomTabBarSize.swift */; };
+		A352819CAE90DE04AB99F70D /* Pods_lettuce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405F6FA3FEE7615153CD1875 /* Pods_lettuce.framework */; };
+		A724AA69242803E300C2EC1B /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A724AA68242803E300C2EC1B /* ChatListViewController.swift */; };
+		A724AA6B242804E700C2EC1B /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A724AA6A242804E700C2EC1B /* ChatCell.swift */; };
+		A724AA6D242809E900C2EC1B /* ChatListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A724AA6C242809E900C2EC1B /* ChatListItem.swift */; };
+		A724AA6F2428574500C2EC1B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A724AA6E2428574500C2EC1B /* ChatViewController.swift */; };
+		A724AA71242858BD00C2EC1B /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A724AA70242858BD00C2EC1B /* ChatMessage.swift */; };
+		A7D2834F2422B4BD00AD677B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A7D2834E2422B4BD00AD677B /* GoogleService-Info.plist */; };
+		A7D283512422F18800AD677B /* Register2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D283502422F18800AD677B /* Register2ViewController.swift */; };
+		FA284E5424248A1500BBC8FF /* MyEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA284E5324248A1500BBC8FF /* MyEventsViewController.swift */; };
+		FA32146F23F8F8F4003A1B2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32146E23F8F8F4003A1B2C /* AppDelegate.swift */; };
+		FA32147123F8F8F4003A1B2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32147023F8F8F4003A1B2C /* SceneDelegate.swift */; };
+		FA32147323F8F8F4003A1B2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32147223F8F8F4003A1B2C /* ViewController.swift */; };
+		FA32147623F8F8F4003A1B2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA32147423F8F8F4003A1B2C /* Main.storyboard */; };
+		FA32147823F8F8F6003A1B2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA32147723F8F8F6003A1B2C /* Assets.xcassets */; };
+		FA32147B23F8F8F6003A1B2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA32147923F8F8F6003A1B2C /* LaunchScreen.storyboard */; };
+		FA3F58B524302AEA00B51C2C /* RequestedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F58B424302AEA00B51C2C /* RequestedViewController.swift */; };
+		FA3F58B724304AD600B51C2C /* PersonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F58B624304AD600B51C2C /* PersonCard.swift */; };
+		FA3F58B9243094E800B51C2C /* GoingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F58B8243094E800B51C2C /* GoingTableViewController.swift */; };
+		FA509DC62403A74800807E33 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA509DC52403A74800807E33 /* FeedViewController.swift */; };
+		FA509DC82403B20800807E33 /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA509DC72403B20800807E33 /* EventCard.swift */; };
+		FA509DCC240442EE00807E33 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA509DCB240442EE00807E33 /* FavoritesViewController.swift */; };
+		FA509DCE24044A8700807E33 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA509DCD24044A8700807E33 /* EventDetailViewController.swift */; };
+		FAA5205923F9E98E00D45CDA /* RegisterViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5205823F9E98E00D45CDA /* RegisterViewConroller.swift */; };
+		FAA5205B23F9E99E00D45CDA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5205A23F9E99E00D45CDA /* LoginViewController.swift */; };
+		FAA5205D23F9F32300D45CDA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5205C23F9F32300D45CDA /* ProfileViewController.swift */; };
+		FAA52A612407269200404835 /* CreateActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA52A602407269200404835 /* CreateActivityViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1518993A1D856420250AE455 /* Pods-lettuce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lettuce.release.xcconfig"; path = "Target Support Files/Pods-lettuce/Pods-lettuce.release.xcconfig"; sourceTree = "<group>"; };
+		3271182F241057E70049D827 /* UserAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountViewController.swift; sourceTree = "<group>"; };
+		32711831241062CA0049D827 /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
+		32D0B81F243AE0EF008F873F /* tabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarControllerViewController.swift; sourceTree = "<group>"; };
+		32D0B821243B0007008F873F /* CustomTabBarSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarSize.swift; sourceTree = "<group>"; };
+		405F6FA3FEE7615153CD1875 /* Pods_lettuce.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lettuce.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A724AA68242803E300C2EC1B /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		A724AA6A242804E700C2EC1B /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		A724AA6C242809E900C2EC1B /* ChatListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListItem.swift; sourceTree = "<group>"; };
+		A724AA6E2428574500C2EC1B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		A724AA70242858BD00C2EC1B /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		A7D2834E2422B4BD00AD677B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A7D283502422F18800AD677B /* Register2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register2ViewController.swift; sourceTree = "<group>"; };
+		AA2F82E3B1847ACFA1718D77 /* Pods-lettuce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lettuce.debug.xcconfig"; path = "Target Support Files/Pods-lettuce/Pods-lettuce.debug.xcconfig"; sourceTree = "<group>"; };
+		FA284E5324248A1500BBC8FF /* MyEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsViewController.swift; sourceTree = "<group>"; };
+		FA32146B23F8F8F4003A1B2C /* lettuce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lettuce.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA32146E23F8F8F4003A1B2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FA32147023F8F8F4003A1B2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FA32147223F8F8F4003A1B2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FA32147523F8F8F4003A1B2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FA32147723F8F8F6003A1B2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA32147A23F8F8F6003A1B2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FA32147C23F8F8F6003A1B2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA3F58B424302AEA00B51C2C /* RequestedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedViewController.swift; sourceTree = "<group>"; };
+		FA3F58B624304AD600B51C2C /* PersonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCard.swift; sourceTree = "<group>"; };
+		FA3F58B8243094E800B51C2C /* GoingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoingTableViewController.swift; sourceTree = "<group>"; };
+		FA509DC52403A74800807E33 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		FA509DC72403B20800807E33 /* EventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
+		FA509DCB240442EE00807E33 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		FA509DCD24044A8700807E33 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		FAA5205823F9E98E00D45CDA /* RegisterViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewConroller.swift; sourceTree = "<group>"; };
+		FAA5205A23F9E99E00D45CDA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FAA5205C23F9F32300D45CDA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FAA52A602407269200404835 /* CreateActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateActivityViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FA32146823F8F8F4003A1B2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A352819CAE90DE04AB99F70D /* Pods_lettuce.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		44DAAEA33DC909B0841685A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				405F6FA3FEE7615153CD1875 /* Pods_lettuce.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4622BAA7887839C87088477F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AA2F82E3B1847ACFA1718D77 /* Pods-lettuce.debug.xcconfig */,
+				1518993A1D856420250AE455 /* Pods-lettuce.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FA32146223F8F8F4003A1B2C = {
+			isa = PBXGroup;
+			children = (
+				FA32146D23F8F8F4003A1B2C /* lettuce */,
+				FA32146C23F8F8F4003A1B2C /* Products */,
+				4622BAA7887839C87088477F /* Pods */,
+				44DAAEA33DC909B0841685A1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FA32146C23F8F8F4003A1B2C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA32146B23F8F8F4003A1B2C /* lettuce.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA32146D23F8F8F4003A1B2C /* lettuce */ = {
+			isa = PBXGroup;
+			children = (
+				A7D2834E2422B4BD00AD677B /* GoogleService-Info.plist */,
+				FA32146E23F8F8F4003A1B2C /* AppDelegate.swift */,
+				FA32147023F8F8F4003A1B2C /* SceneDelegate.swift */,
+				FA32147223F8F8F4003A1B2C /* ViewController.swift */,
+				32D0B81F243AE0EF008F873F /* tabBarControllerViewController.swift */,
+				32D0B821243B0007008F873F /* CustomTabBarSize.swift */,
+				FAA5205A23F9E99E00D45CDA /* LoginViewController.swift */,
+				FAA5205823F9E98E00D45CDA /* RegisterViewConroller.swift */,
+				A7D283502422F18800AD677B /* Register2ViewController.swift */,
+				FAA5205C23F9F32300D45CDA /* ProfileViewController.swift */,
+				FA509DC52403A74800807E33 /* FeedViewController.swift */,
+				FA509DCB240442EE00807E33 /* FavoritesViewController.swift */,
+				FA509DC72403B20800807E33 /* EventCard.swift */,
+				FA3F58B624304AD600B51C2C /* PersonCard.swift */,
+				FA32147423F8F8F4003A1B2C /* Main.storyboard */,
+				FA32147723F8F8F6003A1B2C /* Assets.xcassets */,
+				FA32147923F8F8F6003A1B2C /* LaunchScreen.storyboard */,
+				FA32147C23F8F8F6003A1B2C /* Info.plist */,
+				FA509DCD24044A8700807E33 /* EventDetailViewController.swift */,
+				FA3F58B424302AEA00B51C2C /* RequestedViewController.swift */,
+				FA3F58B8243094E800B51C2C /* GoingTableViewController.swift */,
+				FAA52A602407269200404835 /* CreateActivityViewController.swift */,
+				3271182F241057E70049D827 /* UserAccountViewController.swift */,
+				32711831241062CA0049D827 /* AccountInfoViewController.swift */,
+				FA284E5324248A1500BBC8FF /* MyEventsViewController.swift */,
+				A724AA68242803E300C2EC1B /* ChatListViewController.swift */,
+				A724AA6A242804E700C2EC1B /* ChatCell.swift */,
+				A724AA6C242809E900C2EC1B /* ChatListItem.swift */,
+				A724AA6E2428574500C2EC1B /* ChatViewController.swift */,
+				A724AA70242858BD00C2EC1B /* ChatMessage.swift */,
+			);
+			path = lettuce;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FA32146A23F8F8F4003A1B2C /* lettuce */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA32147F23F8F8F6003A1B2C /* Build configuration list for PBXNativeTarget "lettuce" */;
+			buildPhases = (
+				89C356314235D7C8434AD2E1 /* [CP] Check Pods Manifest.lock */,
+				FA32146723F8F8F4003A1B2C /* Sources */,
+				FA32146823F8F8F4003A1B2C /* Frameworks */,
+				FA32146923F8F8F4003A1B2C /* Resources */,
+				F5696D70A1841EC04F777AA8 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lettuce;
+			productName = lettuce;
+			productReference = FA32146B23F8F8F4003A1B2C /* lettuce.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FA32146323F8F8F4003A1B2C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Alex Appel";
+				TargetAttributes = {
+					FA32146A23F8F8F4003A1B2C = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = FA32146623F8F8F4003A1B2C /* Build configuration list for PBXProject "lettuce" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FA32146223F8F8F4003A1B2C;
+			productRefGroup = FA32146C23F8F8F4003A1B2C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FA32146A23F8F8F4003A1B2C /* lettuce */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FA32146923F8F8F4003A1B2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA32147B23F8F8F6003A1B2C /* LaunchScreen.storyboard in Resources */,
+				A7D2834F2422B4BD00AD677B /* GoogleService-Info.plist in Resources */,
+				FA32147823F8F8F6003A1B2C /* Assets.xcassets in Resources */,
+				FA32147623F8F8F4003A1B2C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		89C356314235D7C8434AD2E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lettuce-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5696D70A1841EC04F777AA8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lettuce/Pods-lettuce-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lettuce/Pods-lettuce-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lettuce/Pods-lettuce-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FA32146723F8F8F4003A1B2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7D283512422F18800AD677B /* Register2ViewController.swift in Sources */,
+				FA284E5424248A1500BBC8FF /* MyEventsViewController.swift in Sources */,
+				A724AA6D242809E900C2EC1B /* ChatListItem.swift in Sources */,
+				A724AA69242803E300C2EC1B /* ChatListViewController.swift in Sources */,
+				FA3F58B9243094E800B51C2C /* GoingTableViewController.swift in Sources */,
+				32D0B822243B0007008F873F /* CustomTabBarSize.swift in Sources */,
+				A724AA6B242804E700C2EC1B /* ChatCell.swift in Sources */,
+				FAA5205D23F9F32300D45CDA /* ProfileViewController.swift in Sources */,
+				FA3F58B524302AEA00B51C2C /* RequestedViewController.swift in Sources */,
+				FA509DCC240442EE00807E33 /* FavoritesViewController.swift in Sources */,
+				FA32147323F8F8F4003A1B2C /* ViewController.swift in Sources */,
+				FAA52A612407269200404835 /* CreateActivityViewController.swift in Sources */,
+				32711832241062CA0049D827 /* AccountInfoViewController.swift in Sources */,
+				FA32146F23F8F8F4003A1B2C /* AppDelegate.swift in Sources */,
+				A724AA6F2428574500C2EC1B /* ChatViewController.swift in Sources */,
+				32D0B820243AE0EF008F873F /* tabBarControllerViewController.swift in Sources */,
+				32711830241057E70049D827 /* UserAccountViewController.swift in Sources */,
+				A724AA71242858BD00C2EC1B /* ChatMessage.swift in Sources */,
+				FAA5205923F9E98E00D45CDA /* RegisterViewConroller.swift in Sources */,
+				FA3F58B724304AD600B51C2C /* PersonCard.swift in Sources */,
+				FAA5205B23F9E99E00D45CDA /* LoginViewController.swift in Sources */,
+				FA509DCE24044A8700807E33 /* EventDetailViewController.swift in Sources */,
+				FA32147123F8F8F4003A1B2C /* SceneDelegate.swift in Sources */,
+				FA509DC82403B20800807E33 /* EventCard.swift in Sources */,
+				FA509DC62403A74800807E33 /* FeedViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FA32147423F8F8F4003A1B2C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA32147523F8F8F4003A1B2C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FA32147923F8F8F6003A1B2C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA32147A23F8F8F6003A1B2C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FA32147D23F8F8F6003A1B2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FA32147E23F8F8F6003A1B2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FA32148023F8F8F6003A1B2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA2F82E3B1847ACFA1718D77 /* Pods-lettuce.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = W4U2684MT5;
+				INFOPLIST_FILE = lettuce/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.avappel.lettuce;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FA32148123F8F8F6003A1B2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1518993A1D856420250AE455 /* Pods-lettuce.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = W4U2684MT5;
+				INFOPLIST_FILE = lettuce/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.avappel.lettuce;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FA32146623F8F8F4003A1B2C /* Build configuration list for PBXProject "lettuce" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA32147D23F8F8F6003A1B2C /* Debug */,
+				FA32147E23F8F8F6003A1B2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA32147F23F8F8F6003A1B2C /* Build configuration list for PBXNativeTarget "lettuce" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA32148023F8F8F6003A1B2C /* Debug */,
+				FA32148123F8F8F6003A1B2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FA32146323F8F8F4003A1B2C /* Project object */;
+}

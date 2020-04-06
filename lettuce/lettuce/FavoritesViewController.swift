@@ -1,0 +1,197 @@
+//
+//  FavoritesViewController.swift
+//  lettuce
+//
+//  Created by Alex Appel on 2/24/20.
+//  Copyright © 2020 Alex Appel, Uki Malla. All rights reserved.
+//
+
+import Foundation
+import UIKit
+import FirebaseFirestore
+import FirebaseAuth
+
+class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var theTableView: UITableView!
+    var events:[DocumentSnapshot] = []
+    var selectedItemIndex = 0
+    
+    func initView(){
+        theTableView.delegate = self
+        theTableView.dataSource = self
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return events.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let myCell = theTableView.dequeueReusableCell(withIdentifier: "eventDetails") as? EventCard {
+                        
+            if let title = events[indexPath.item].get("name") as? String{
+//                print("getting title")
+                myCell.eventTitle.text = title
+            }
+            else {
+                print("Couldn't parse title")
+            }
+            
+            if let mp_url = events[indexPath.item].get("photos_url") as? String{
+                if let mainPictureActualURL = URL(string: mp_url){
+                    let mainPictureData = try? Data(contentsOf: mainPictureActualURL)
+                    if let data = mainPictureData{
+                        let mainPictureImage = UIImage(data: data)
+                        myCell.eventImage.image = mainPictureImage
+                        myCell.eventImage.contentMode = .scaleAspectFill
+                        myCell.noImgLabel.isHidden = true
+                    }
+                    else {
+                        myCell.eventImage.image = nil
+                        myCell.noImgLabel.isHidden = false
+                    }
+                }
+            }else{
+                myCell.noImgLabel.isHidden = false
+                myCell.eventImage.image = nil
+                print("Couldn't parse url")
+            }
+            
+            if let description = events[indexPath.item].get("description") as? String{
+                myCell.descriptionLabel.text = description
+            }else{
+                print("Couldn't parse description")
+            }
+            
+            if let username = events[indexPath.item].get("username") as? String{
+                myCell.userNameLabel.text = username
+            }else{
+                print("Couldn't parse username")
+            }
+            
+            if let location = events[indexPath.item].get("location") as? String{
+                
+                myCell.location.text = location
+            }else{
+                print("Couldn't parse location")
+            }
+            
+            
+            myCell.descriptionLabel.isScrollEnabled = false
+            myCell.descriptionLabel.isEditable = false
+            
+            myCell.favoriteButton.isSelected = true
+            
+            myCell.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            myCell.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+            
+            myCell.favoriteButton.addTarget(self, action: #selector(unfavorite(button:)), for: .touchUpInside)
+
+            myCell.favoriteButton.tag = indexPath.row
+            
+            return myCell
+        }else{
+            print("Couldn't convert to event card")
+        }
+        
+        return UITableViewCell(style: .default, reuseIdentifier: "myCell")
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        selectedItemIndex = indexPath.item
+        return true
+    }
+    
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        initView()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        events.removeAll()
+        loadEvents()
+    }
+    
+    
+    func loadEvents(){
+        let db = Firestore.firestore()
+        
+        let currentUser = (Auth.auth().currentUser)!.uid
+        
+        db.collection("users").whereField("id", isEqualTo: currentUser)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let favoritedEventsList = document.get("favoritedEventsList") as! [String]
+                                                    
+                        for event in favoritedEventsList {
+                            
+                            let docRef = db.collection("events").document(event)
+                            
+                            docRef.getDocument { (snapshot, err) in
+                                if let err = err {
+                                    print("Error getting documents: \(err)")
+                                }
+                                else {
+                                    self.events.append(snapshot!)
+                                }
+                                self.theTableView.reloadData()
+                            }
+                               
+                        }
+
+                    }
+                }
+        }
+        
+        
+    }
+    
+    @objc func unfavorite(button: UIButton){
+        button.isSelected = !button.isSelected
+        
+        let buttonTag = button.tag
+        
+//        print("fire")
+//        print(buttonTag)
+//
+//        print("highlighted: ")
+//        print(button.isHighlighted)
+//        print(button.isSelected)
+//
+//        print(button)
+        
+        let documentID = events[buttonTag].documentID
+        
+        let db = Firestore.firestore()
+        
+        db.collection("users").whereField("id", isEqualTo: Auth.auth().currentUser!.uid)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+//                        print("unfavorited event!")
+                       // Atomically remove an event from the "favoritedEventList" array field.
+                       document.reference.updateData([
+                           "favoritedEventsList": FieldValue.arrayRemove([documentID])
+                       ])
+                        self.events.remove(at: buttonTag)
+                    }
+                    self.theTableView.reloadData()
+                }
+        }
+    
+
+    }
+}
