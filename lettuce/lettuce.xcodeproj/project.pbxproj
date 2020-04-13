@@ -37,6 +37,7 @@
 		FAA5205B23F9E99E00D45CDA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5205A23F9E99E00D45CDA /* LoginViewController.swift */; };
 		FAA5205D23F9F32300D45CDA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5205C23F9F32300D45CDA /* ProfileViewController.swift */; };
 		FAA52A612407269200404835 /* CreateActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA52A602407269200404835 /* CreateActivityViewController.swift */; };
+		FAAC08492443DF2800B30974 /* EventCard2.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC08482443DF2800B30974 /* EventCard2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		FAA5205A23F9E99E00D45CDA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FAA5205C23F9F32300D45CDA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FAA52A602407269200404835 /* CreateActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateActivityViewController.swift; sourceTree = "<group>"; };
+		FAAC08482443DF2800B30974 /* EventCard2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				FA509DC52403A74800807E33 /* FeedViewController.swift */,
 				FA509DCB240442EE00807E33 /* FavoritesViewController.swift */,
 				FA509DC72403B20800807E33 /* EventCard.swift */,
+				FAAC08482443DF2800B30974 /* EventCard2.swift */,
 				FA3F58B624304AD600B51C2C /* PersonCard.swift */,
 				FA32147423F8F8F4003A1B2C /* Main.storyboard */,
 				FA32147723F8F8F6003A1B2C /* Assets.xcassets */,
@@ -277,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7D283512422F18800AD677B /* Register2ViewController.swift in Sources */,
+				FAAC08492443DF2800B30974 /* EventCard2.swift in Sources */,
 				FA284E5424248A1500BBC8FF /* MyEventsViewController.swift in Sources */,
 				A724AA6D242809E900C2EC1B /* ChatListItem.swift in Sources */,
 				A724AA69242803E300C2EC1B /* ChatListViewController.swift in Sources */,

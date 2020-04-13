@@ -32,9 +32,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let myCell = theTableView.dequeueReusableCell(withIdentifier: "eventDetails") as? EventCard{
+        if let myCell = theTableView.dequeueReusableCell(withIdentifier: "eventDetails") as? EventCard2 {
             if let title = events[indexPath.item].get("name") as? String{
                 myCell.eventTitle.text = title
+                myCell.eventTitle.adjustsFontSizeToFitWidth = true
+                myCell.eventTitle.minimumScaleFactor = 0.5
             }else{
 //                print("Couldn't parse title")
                 myCell.eventTitle.text = nil
@@ -42,31 +44,59 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             myCell.documentID = events[indexPath.item].documentID
             
-            if let mp_url = events[indexPath.item].get("photos_url") as? String{
-                if let mainPictureActualURL = URL(string: mp_url){
-                    let mainPictureData = try? Data(contentsOf: mainPictureActualURL)
-                    if let data = mainPictureData {
-                        let mainPictureImage = UIImage(data: data)
-                        myCell.eventImage.image = mainPictureImage
-                        myCell.eventImage.contentMode = .scaleAspectFill
-                        myCell.noImgLabel.isHidden = true
+
+            if let categoryIconURL = events[indexPath.item].get("photos_url") as? String {
+                if let categoryIconActualURL = URL(string: categoryIconURL){
+                    let categoryIconData = try? Data(contentsOf: categoryIconActualURL)
+                    if let data = categoryIconData {
+                        let categoryIcon = UIImage(data: data)
+                        myCell.categoryIcon.image = categoryIcon
+                        myCell.categoryIcon.contentMode = .scaleAspectFill
+//                        myCell.noImgLabel.isHidden = true
                     }
                     else {
                         print("could not get data")
-                        myCell.eventImage.image = nil
-//                        myCell.noImgLabel.isHidden = false
+                        myCell.categoryIcon.image = nil
+    //                        myCell.noImgLabel.isHidden = false
                     }
                 }
                 else {
-                    myCell.eventImage.image = nil
-                    myCell.noImgLabel.isHidden = false
+                    myCell.categoryIcon.image = nil
+//                    myCell.noImgLabel.isHidden = false
                     
                 }
             }else{
-                myCell.noImgLabel.isHidden = false
-                myCell.eventImage.image = nil
-//                print("Couldn't parse url")
+//                myCell.noImgLabel.isHidden = false
+                myCell.categoryIcon.image = nil
+    //                print("Couldn't parse url")
             }
+            
+            
+//            if let mp_url = events[indexPath.item].get("photos_url") as? String{
+//                if let mainPictureActualURL = URL(string: mp_url){
+//                    let mainPictureData = try? Data(contentsOf: mainPictureActualURL)
+//                    if let data = mainPictureData {
+//                        let mainPictureImage = UIImage(data: data)
+//                        myCell.eventImage.image = mainPictureImage
+//                        myCell.eventImage.contentMode = .scaleAspectFill
+//                        myCell.noImgLabel.isHidden = true
+//                    }
+//                    else {
+//                        print("could not get data")
+//                        myCell.eventImage.image = nil
+////                        myCell.noImgLabel.isHidden = false
+//                    }
+//                }
+//                else {
+//                    myCell.eventImage.image = nil
+//                    myCell.noImgLabel.isHidden = false
+//
+//                }
+//            }else{
+//                myCell.noImgLabel.isHidden = false
+//                myCell.eventImage.image = nil
+////                print("Couldn't parse url")
+//            }
             
             
 //            if let description = events[indexPath.item].get("description") as? String {
@@ -76,22 +106,24 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 //                myCell.descriptionLabel.text = nil
 //            }
             
-            if let username = events[indexPath.item].get("username") as? String {
-                myCell.userNameLabel.text = username
-            }else{
-//                print("Couldn't parse username")
-                myCell.userNameLabel.text = nil
-            }
-            
+//            if let username = events[indexPath.item].get("username") as? String {
+//                myCell.userNameLabel.text = username
+//            }else{
+////                print("Couldn't parse username")
+//                myCell.userNameLabel.text = nil
+//            }
+//
             if let location = events[indexPath.item].get("address") as? String {
-                myCell.location.text = location
+//                myCell.distance.text = location
+                myCell.distance.text = "20 mi."
             }else{
 //                print("Couldn't parse location")
-                myCell.userNameLabel.text = nil
+//                myCell.userNameLabel.text = nil
             }
             
-            myCell.favoriteButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-            myCell.favoriteButton.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
+            
+            myCell.bookmarkIcon.setImage(UIImage(systemName: "bookmark"), for: .normal)
+            myCell.bookmarkIcon.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
             
             print("currentUser: " + Auth.auth().currentUser!.uid)
 
@@ -105,11 +137,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                         
                             if favoritedEventsList.contains(myCell.documentID) {
 //                                myCell.favoriteButton.isHighlighted = true
-                                myCell.favoriteButton.isSelected = true
+                                myCell.bookmarkIcon.isSelected = true
                             }
                             else {
 //                                myCell.favoriteButton.isHighlighted = false
-                                myCell.favoriteButton.isSelected = false
+                                myCell.bookmarkIcon.isSelected = false
                             }
                             }
 
@@ -117,9 +149,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
             }
         
-            myCell.favoriteButton.addTarget(self, action: #selector(favorite(button:)), for: .touchUpInside)
+            myCell.bookmarkIcon.addTarget(self, action: #selector(favorite(button:)), for: .touchUpInside)
 
-            myCell.favoriteButton.tag = indexPath.row
+            myCell.bookmarkIcon.tag = indexPath.row
             
             if(indexPath.row % 2 == 0){
                 myCell.backgroundColor = UIColor.white
