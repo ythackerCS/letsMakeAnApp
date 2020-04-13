@@ -33,7 +33,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let myCell = theTableView.dequeueReusableCell(withIdentifier: "eventDetails") as? EventCard2 {
-            if let title = events[indexPath.item].get("name") as? String{
+            
+            if let title = events[indexPath.item].get("name") as? String {
                 myCell.eventTitle.text = title
                 myCell.eventTitle.adjustsFontSizeToFitWidth = true
                 myCell.eventTitle.minimumScaleFactor = 0.5
@@ -71,6 +72,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     //                print("Couldn't parse url")
             }
             
+            myCell.locationMarker.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/6)
+//            myCell.locationMarker.tintColor = UIColor.label
+            
+            let templateImage = myCell.locationMarker?.image?.withRenderingMode(.alwaysTemplate)
+            myCell.locationMarker.image? = templateImage!
+            myCell.locationMarker.tintColor = UIColor.label
             
 //            if let mp_url = events[indexPath.item].get("photos_url") as? String{
 //                if let mainPictureActualURL = URL(string: mp_url){
@@ -122,9 +129,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             
+            
+            
             myCell.bookmarkIcon.setImage(UIImage(systemName: "bookmark"), for: .normal)
             myCell.bookmarkIcon.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
             
+            myCell.bookmarkIcon.tintColor = UIColor.label
+            
+                        
             print("currentUser: " + Auth.auth().currentUser!.uid)
 
             db.collection("users").whereField("id", isEqualTo: Auth.auth().currentUser!.uid)
@@ -148,20 +160,25 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                         }
                     }
             }
+            
         
             myCell.bookmarkIcon.addTarget(self, action: #selector(favorite(button:)), for: .touchUpInside)
 
             myCell.bookmarkIcon.tag = indexPath.row
             
-            if(indexPath.row % 2 == 0){
-                myCell.backgroundColor = UIColor.white
-            }
-            else{
-                myCell.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
-            }
+//            if(indexPath.row % 2 == 0){
+//                myCell.backgroundColor = UIColor.white
+//            }
+//            else{
+//                myCell.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
+//            }
+            
+            
+            myCell.backgroundColor = UIColor.systemBackground;
             
 //            myCell.descriptionLabel.isScrollEnabled = false
 //            myCell.descriptionLabel.isEditable = false
+            
             
             return myCell
         }else{

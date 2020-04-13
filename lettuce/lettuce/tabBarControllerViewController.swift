@@ -19,26 +19,31 @@ class tabBarControllerViewController: UITabBarController, UITabBarControllerDele
 //        addStoreObj()
         
         self.delegate = self
-        UITabBar.appearance().backgroundColor = UIColor(red: 104/255, green: 165/255, blue: 0/255, alpha: 1.0)
-        UITabBar.appearance().tintColor = UIColor(red: 154/255, green: 206/255, blue: 0/255, alpha: 1.0)
-        UITabBar.appearance().unselectedItemTintColor = UIColor(red: 77/255, green: 108/255, blue: 32/255, alpha: 1.0)
+//        UITabBar.appearance().backgroundColor = UIColor(red: 56/255, green: 81/255, blue: 62/255, alpha: 1.0)
+//        UITabBar.appearance().tintColor = UIColor(red: 56/255, green: 81/255, blue: 62/255, alpha: 1.0)
+//        UITabBar.appearance().unselectedItemTintColor = UIColor(red: 77/255, green: 108/255, blue: 32/255, alpha: 1.0)
+        UITabBar.appearance().tintColor = UIColor(red: 144/255, green: 206/255, blue: 158/255, alpha: 1.0)
+        UITabBar.appearance().unselectedItemTintColor = UIColor(red: 68/255, green: 68/255, blue: 68/255, alpha: 1.0)
         
         for items in self.tabBar.items!{
             items.imageInsets = UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100)
-            items.badgeColor = UIColor.systemYellow
+            items.badgeColor = UIColor.systemRed
             items.badgeValue = "1"
         }
         
         
         //how to do raised tab bar:https://equaleyes.com/blog/2017/09/04/the-common-raised-center-button-problems-in-tabbar/
         middleButton.frame.size = CGSize(width: 70, height: 50)
-        middleButton.backgroundColor = UIColor(red: 154/255, green: 206/255, blue: 0/255, alpha: 1.0)
+//        middleButton.backgroundColor = UIColor(red: 154/255, green: 206/255, blue: 0/255, alpha: 1.0)
+        middleButton.backgroundColor = UIColor(red: 144/255, green: 206/255, blue: 158/255, alpha: 1.0)
         middleButton.layer.cornerRadius = 10
         middleButton.layer.masksToBounds = true
         middleButton.center = CGPoint(x: tabBar.frame.width / 2, y: 20)
         let imageContainer = UIImageView.init()
         imageContainer.frame.size = CGSize(width: 45, height: 35)
-        imageContainer.tintColor = UIColor(red: 77/255, green: 108/255, blue: 32/255, alpha: 1.0)
+//        imageContainer.tintColor = UIColor(red: 77/255, green: 108/255, blue: 32/255, alpha: 1.0)
+//        imageContainer.tintColor = UIColor.white
+        imageContainer.tintColor = UIColor.systemBackground
         imageContainer.center = CGPoint(x: middleButton.frame.width/2, y: middleButton.frame.height/2)
         imageContainer.image = UIImage(systemName: "plus")
         middleButton.addSubview(imageContainer)

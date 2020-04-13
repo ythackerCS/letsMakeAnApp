@@ -28,67 +28,75 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let myCell = theTableView.dequeueReusableCell(withIdentifier: "eventDetails") as? EventCard {
+        if let myCell = theTableView.dequeueReusableCell(withIdentifier: "eventDetails") as? EventCard2 {
                         
             if let title = events[indexPath.item].get("name") as? String{
 //                print("getting title")
                 myCell.eventTitle.text = title
+                myCell.eventTitle.adjustsFontSizeToFitWidth = true
+                myCell.eventTitle.minimumScaleFactor = 0.5
             }
             else {
                 print("Couldn't parse title")
             }
             
-            if let mp_url = events[indexPath.item].get("photos_url") as? String{
-                if let mainPictureActualURL = URL(string: mp_url){
-                    let mainPictureData = try? Data(contentsOf: mainPictureActualURL)
-                    if let data = mainPictureData{
-                        let mainPictureImage = UIImage(data: data)
-                        myCell.eventImage.image = mainPictureImage
-                        myCell.eventImage.contentMode = .scaleAspectFill
-                        myCell.noImgLabel.isHidden = true
+            if let categoryIconURL = events[indexPath.item].get("photos_url") as? String {
+                if let categoryIconActualURL = URL(string: categoryIconURL){
+                    let categoryIconData = try? Data(contentsOf: categoryIconActualURL)
+                    if let data = categoryIconData {
+                        let categoryIcon = UIImage(data: data)
+                        myCell.categoryIcon.image = categoryIcon
+                        myCell.categoryIcon.contentMode = .scaleAspectFill
+//                        myCell.noImgLabel.isHidden = true
                     }
                     else {
-                        myCell.eventImage.image = nil
-//                        myCell.noImgLabel.isHidden = false
+                        print("could not get data")
+                        myCell.categoryIcon.image = nil
+    //                        myCell.noImgLabel.isHidden = false
                     }
+                }
+                else {
+                    myCell.categoryIcon.image = nil
+//                    myCell.noImgLabel.isHidden = false
+                    
                 }
             }else{
 //                myCell.noImgLabel.isHidden = false
-                myCell.eventImage.image = nil
-                print("Couldn't parse url")
+                myCell.categoryIcon.image = nil
+    //                print("Couldn't parse url")
             }
             
-            if let description = events[indexPath.item].get("description") as? String{
-                myCell.descriptionLabel.text = description
+//            if let description = events[indexPath.item].get("description") as? String{
+//                myCell.descriptionLabel.text = description
+//            }else{
+//                print("Couldn't parse description")
+//            }
+            
+//            if let username = events[indexPath.item].get("username") as? String{
+//                myCell.userNameLabel.text = username
+//            }else{
+//                print("Couldn't parse username")
+//            }
+            
+            if let location = events[indexPath.item].get("address") as? String {
+//                myCell.distance.text = location
+                myCell.distance.text = "20 mi."
             }else{
-                print("Couldn't parse description")
+//                print("Couldn't parse location")
+//                myCell.userNameLabel.text = nil
             }
             
-            if let username = events[indexPath.item].get("username") as? String{
-                myCell.userNameLabel.text = username
-            }else{
-                print("Couldn't parse username")
-            }
+//            myCell.descriptionLabel.isScrollEnabled = false
+//            myCell.descriptionLabel.isEditable = false
             
-            if let location = events[indexPath.item].get("location") as? String{
-                
-                myCell.location.text = location
-            }else{
-                print("Couldn't parse location")
-            }
+            myCell.bookmarkIcon.isSelected = true
             
+//            myCell.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+//            myCell.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
             
-            myCell.descriptionLabel.isScrollEnabled = false
-            myCell.descriptionLabel.isEditable = false
-            
-            myCell.favoriteButton.isSelected = true
-            
-            myCell.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            myCell.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-            
-            myCell.favoriteButton.addTarget(self, action: #selector(unfavorite(button:)), for: .touchUpInside)
+            myCell.bookmarkIcon.addTarget(self, action: #selector(unfavorite(button:)), for: .touchUpInside)
 
-            myCell.favoriteButton.tag = indexPath.row
+            myCell.bookmarkIcon.tag = indexPath.row
             
             return myCell
         }else{

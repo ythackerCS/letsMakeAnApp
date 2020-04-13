@@ -18,5 +18,6 @@ class EventCard2: UITableViewCell {
     @IBOutlet weak var personIcon2: UIImageView!
     @IBOutlet weak var personIcon3: UIImageView!
     @IBOutlet weak var bookmarkIcon: UIButton!
+    @IBOutlet weak var locationMarker: UIImageView!
     var documentID: String!
 }
