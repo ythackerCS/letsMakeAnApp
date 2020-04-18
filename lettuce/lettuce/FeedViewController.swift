@@ -12,8 +12,6 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    
     @IBOutlet weak var theTableView: UITableView!
     var events:[QueryDocumentSnapshot] = []
     var selectedItemIndex = 0
@@ -205,7 +203,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        loadEvents()
 //        print(events.count)
         
-
     }
     
     
@@ -290,8 +287,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
 
-        let eventDetailVC = segue.destination as! EventDetailViewController
-        eventDetailVC.event = events[selectedItemIndex]
+//        let eventDetailVC = segue.destination as! EventDetailViewController
+//        eventDetailVC.event = events[selectedItemIndex]
     }
     
 }
