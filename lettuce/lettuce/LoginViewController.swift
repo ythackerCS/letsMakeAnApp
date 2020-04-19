@@ -25,7 +25,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         self.activityView.startAnimating()
         
-        
         Auth.auth().addStateDidChangeListener{(auth, user) in
             if Auth.auth().currentUser != nil{
                 self.performSegue(withIdentifier: "toProfileScreen", sender: self)

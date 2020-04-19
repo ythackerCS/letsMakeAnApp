@@ -30,162 +30,105 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let myCell = theTableView.dequeueReusableCell(withIdentifier: "eventDetails") as? EventCard2 {
-            
-            if let title = events[indexPath.item].get("name") as? String {
-                myCell.eventTitle.text = title
-                myCell.eventTitle.adjustsFontSizeToFitWidth = true
-                myCell.eventTitle.minimumScaleFactor = 0.5
-            }else{
-//                print("Couldn't parse title")
-                myCell.eventTitle.text = nil
-            }
-            
-            myCell.documentID = events[indexPath.item].documentID
-            
+        guard let myCell = theTableView.dequeueReusableCell(withIdentifier: "eventDetails") as? EventCard2 else {
+            return UITableViewCell(style: .default, reuseIdentifier: "myCell")
+        }
 
-            if let categoryIconURL = events[indexPath.item].get("photos_url") as? String {
-                if let categoryIconActualURL = URL(string: categoryIconURL){
-                    let categoryIconData = try? Data(contentsOf: categoryIconActualURL)
-                    if let data = categoryIconData {
-                        let categoryIcon = UIImage(data: data)
+        if let title = events[indexPath.item].get("name") as? String {
+            myCell.eventTitle.text = title
+            myCell.eventTitle.adjustsFontSizeToFitWidth = true
+            myCell.eventTitle.minimumScaleFactor = 0.5
+        } else {
+//                print("Couldn't parse title")
+            myCell.eventTitle.text = nil
+        }
+        
+        myCell.documentID = events[indexPath.item].documentID
+
+        myCell.categoryIcon.image = nil
+        if let categoryIconURL = events[indexPath.item].get("photos_url") as? String,
+            let categoryIconActualURL = URL(string: categoryIconURL) {
+
+            DispatchQueue.global(qos: .background).async {
+                // fetch image on background thread
+                if let categoryIconData = try? Data(contentsOf: categoryIconActualURL) {
+                    DispatchQueue.main.async {
+                        // update image on main thread
+                        let categoryIcon = UIImage(data: categoryIconData)
                         myCell.categoryIcon.image = categoryIcon
                         myCell.categoryIcon.contentMode = .scaleAspectFill
-//                        myCell.noImgLabel.isHidden = true
-                    }
-                    else {
-                        print("could not get data")
-                        myCell.categoryIcon.image = nil
-    //                        myCell.noImgLabel.isHidden = false
                     }
                 }
-                else {
-                    myCell.categoryIcon.image = nil
-//                    myCell.noImgLabel.isHidden = false
-                    
-                }
-            }else{
-//                myCell.noImgLabel.isHidden = false
-                myCell.categoryIcon.image = nil
-    //                print("Couldn't parse url")
             }
-            
-            myCell.locationMarker.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/6)
+        }
+        
+        myCell.locationMarker.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/6)
 //            myCell.locationMarker.tintColor = UIColor.label
-            
-            let templateImage = myCell.locationMarker?.image?.withRenderingMode(.alwaysTemplate)
-            myCell.locationMarker.image? = templateImage!
-            myCell.locationMarker.tintColor = UIColor.label
-            
-//            if let mp_url = events[indexPath.item].get("photos_url") as? String{
-//                if let mainPictureActualURL = URL(string: mp_url){
-//                    let mainPictureData = try? Data(contentsOf: mainPictureActualURL)
-//                    if let data = mainPictureData {
-//                        let mainPictureImage = UIImage(data: data)
-//                        myCell.eventImage.image = mainPictureImage
-//                        myCell.eventImage.contentMode = .scaleAspectFill
-//                        myCell.noImgLabel.isHidden = true
-//                    }
-//                    else {
-//                        print("could not get data")
-//                        myCell.eventImage.image = nil
-////                        myCell.noImgLabel.isHidden = false
-//                    }
-//                }
-//                else {
-//                    myCell.eventImage.image = nil
-//                    myCell.noImgLabel.isHidden = false
-//
-//                }
-//            }else{
-//                myCell.noImgLabel.isHidden = false
-//                myCell.eventImage.image = nil
-////                print("Couldn't parse url")
-//            }
-            
-            
-//            if let description = events[indexPath.item].get("description") as? String {
-//                myCell.descriptionLabel.text = description
-//            }else{
-////                print("Couldn't parse description")
-//                myCell.descriptionLabel.text = nil
-//            }
-            
-//            if let username = events[indexPath.item].get("username") as? String {
-//                myCell.userNameLabel.text = username
-//            }else{
-////                print("Couldn't parse username")
-//                myCell.userNameLabel.text = nil
-//            }
-//
-            if let location = events[indexPath.item].get("address") as? String {
+        
+        let templateImage = myCell.locationMarker?.image?.withRenderingMode(.alwaysTemplate)
+        myCell.locationMarker.image? = templateImage!
+        myCell.locationMarker.tintColor = UIColor.label
+        
+
+        if let location = events[indexPath.item].get("address") as? String {
 //                myCell.distance.text = location
-                myCell.distance.text = "20 mi."
-            }else{
+            myCell.distance.text = "20 mi."
+        }else{
 //                print("Couldn't parse location")
 //                myCell.userNameLabel.text = nil
-            }
-            
-            
-            
-            
-            myCell.bookmarkIcon.setImage(UIImage(systemName: "bookmark"), for: .normal)
-            myCell.bookmarkIcon.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
-            
-            myCell.bookmarkIcon.tintColor = UIColor.label
-            
-                        
-            print("currentUser: " + Auth.auth().currentUser!.uid)
-
-            db.collection("users").whereField("id", isEqualTo: Auth.auth().currentUser!.uid)
-                .getDocuments() { (querySnapshot, err) in
-                    if let err = err {
-                        print("Error getting documents: \(err)")
-                    } else {
-                        for document in querySnapshot!.documents {
-                            if let favoritedEventsList = document.get("favoritedEventsList") as? [String]{
-                                                        
-                            if favoritedEventsList.contains(myCell.documentID) {
-//                                myCell.favoriteButton.isHighlighted = true
-                                myCell.bookmarkIcon.isSelected = true
-                            }
-                            else {
-//                                myCell.favoriteButton.isHighlighted = false
-                                myCell.bookmarkIcon.isSelected = false
-                            }
-                            }
-
-                        }
-                    }
-            }
-            
+        }
         
-            myCell.bookmarkIcon.addTarget(self, action: #selector(favorite(button:)), for: .touchUpInside)
 
-            myCell.bookmarkIcon.tag = indexPath.row
-            
+        myCell.bookmarkIcon.setImage(UIImage(systemName: "bookmark"), for: .normal)
+        myCell.bookmarkIcon.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
+        
+        myCell.bookmarkIcon.tintColor = UIColor.label
+        
+                    
+        print("currentUser: " + Auth.auth().currentUser!.uid)
+
+        db.collection("users").whereField("id", isEqualTo: Auth.auth().currentUser!.uid)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        if let favoritedEventsList = document.get("favoritedEventsList") as? [String]{
+                                                    
+                        if favoritedEventsList.contains(myCell.documentID) {
+//                                myCell.favoriteButton.isHighlighted = true
+                            myCell.bookmarkIcon.isSelected = true
+                        }
+                        else {
+//                                myCell.favoriteButton.isHighlighted = false
+                            myCell.bookmarkIcon.isSelected = false
+                        }
+                        }
+
+                    }
+                }
+        }
+        
+    
+        myCell.bookmarkIcon.addTarget(self, action: #selector(favorite(button:)), for: .touchUpInside)
+
+        myCell.bookmarkIcon.tag = indexPath.row
+        
 //            if(indexPath.row % 2 == 0){
 //                myCell.backgroundColor = UIColor.white
 //            }
 //            else{
 //                myCell.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
 //            }
-            
-            
-            myCell.backgroundColor = UIColor.systemBackground;
-            
+        
+        
+        myCell.backgroundColor = UIColor.systemBackground;
+        
 //            myCell.descriptionLabel.isScrollEnabled = false
 //            myCell.descriptionLabel.isEditable = false
-            
-            
-            return myCell
-        }else{
-//            print("Couldn't convert to event card")
-        }
-        
-        return UITableViewCell(style: .default, reuseIdentifier: "myCell")
         
         
+        return myCell
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
