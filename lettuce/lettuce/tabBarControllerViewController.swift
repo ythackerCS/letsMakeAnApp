@@ -50,6 +50,8 @@ class tabBarControllerViewController: UITabBarController, UITabBarControllerDele
         middleButton.addTarget(self, action: #selector(test), for: .touchUpInside)
         tabBar.addSubview(middleButton)
         
+        tabBar.bringSubviewToFront(middleButton)
+        
     }
     
     

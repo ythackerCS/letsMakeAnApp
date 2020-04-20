@@ -193,7 +193,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             y: view.frame.height/2 - height/2,
             width: width,
             height: height)
-            outgoingMessageLayer.fillColor = UIColor(red: 0.251, green: 0.8196, blue: 0.0627, alpha: 1.0).cgColor
+//            outgoingMessageLayer.fillColor = UIColor(red: 0.251, green: 0.8196, blue: 0.0627, alpha: 1.0).cgColor
+            outgoingMessageLayer.fillColor = UIColor(red: 144/255, green: 206/255, blue: 158/255, alpha: 1.0).cgColor
             outgoingMessageLayer.transform = CATransform3DMakeScale(1, 1, 1)
         }
         else{
@@ -201,7 +202,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             y: view.frame.height/2 - height/2,
             width: width,
             height: height)
-            outgoingMessageLayer.fillColor = UIColor(red: 0.5686, green: 0.8196, blue: 0.4314, alpha: 1.0).cgColor
+//            outgoingMessageLayer.fillColor = UIColor(red: 0.5686, green: 0.8196, blue: 0.4314, alpha: 1.0).cgColor
+            outgoingMessageLayer.fillColor = UIColor.systemGray.cgColor
             outgoingMessageLayer.transform = CATransform3DMakeScale(-1, 1, 1)
         }
         view.layer.addSublayer(outgoingMessageLayer)
