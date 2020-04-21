@@ -15,6 +15,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var chatListStub:ChatListItem!
     var chatMessageList:[ChatMessage] = []
     let currentUser = Auth.auth().currentUser?.uid
+    let CHAT_LIMIT = 25
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,7 +62,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.title = chatListStub.chatTitle
         
         let db = Firestore.firestore()
-           if let uid = Auth.auth().currentUser?.uid{
+           if let _ = Auth.auth().currentUser?.uid{
                db.collection("chats").document(chatListStub.documentID).collection("chat").addSnapshotListener{
                        documentSnapshot, error in
                       guard let _ = documentSnapshot else {
@@ -80,7 +81,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func fetchDataFromDB(){
         let db = Firestore.firestore()
         // Get latest 10 message
-        db.collection("chats").document(chatListStub.documentID).collection("chat").order(by: "timestamp").getDocuments{
+        db.collection("chats").document(chatListStub.documentID).collection("chat").order(by: "timestamp", descending: true).limit(to: CHAT_LIMIT).getDocuments{
             (snap, err) in
             
             if let err = err{
@@ -94,6 +95,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.theTableView.reloadData()
                     self.scrollToBottom()
                 }
+                self.chatMessageList.reverse()
             }
         }
         

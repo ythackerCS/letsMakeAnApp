@@ -31,7 +31,6 @@ class ChatListItem{
         
         // Getting username from uid using firestore
         for user in uid{
-            if user != Auth.auth().currentUser?.uid{
                 db.collection("users").whereField("id", isEqualTo: user).getDocuments{
                     (snap, err) in
                     if let err = err{
@@ -44,7 +43,6 @@ class ChatListItem{
                         }
                         self._parseTitle()
                     }
-                }
             }
 
         }
@@ -62,21 +60,51 @@ class ChatListItem{
     
     
     private func _parseTitle(){
-            for (_, username) in uidToUsername{
-                       chatTitle += username + ", "
-                   }
-                   if let i = chatTitle.lastIndex(of: ","){
-                       chatTitle.remove(at: i)
-                   }
-                   
-                   if let i = chatTitle.lastIndex(of: " "){
-                       chatTitle.remove(at: i)
-                   }
+        chatTitle = ""
+        if let eventName = documentSnapshot.get("eventName") as? String{
+            chatTitle += eventName
+        }
+        
+        var chatPeople = ""
+            
+            for (uid, username) in uidToUsername{
+                if(uid != Auth.auth().currentUser?.uid){
+                       chatPeople += username + ", "
+                }
+           }
+        if chatPeople == ""{
+            chatPeople = "Only You"
+        }else{
+            if let i = chatPeople.lastIndex(of: ","){
+                              chatPeople.remove(at: i)
+              }
+                          
+          if let i = chatPeople.lastIndex(of: " "){
+              chatPeople.remove(at: i)
+          }
+        }
+        
+              
+        
+
+        
+        
+        if chatTitle == ""{
+            chatTitle = chatPeople
+        }else{
+            chatTitle += " (\(chatPeople))"
+        }
+        
+        print("Set title to " +  chatTitle)
         self.onCompletion()
+
+        
+
     }
     
     init(qDocumentSnapshot:QueryDocumentSnapshot, completion: @escaping () -> Void) {
         documentID = qDocumentSnapshot.documentID
+        documentSnapshot = qDocumentSnapshot
         let db = Firestore.firestore()
         onCompletion = completion
         
@@ -86,7 +114,7 @@ class ChatListItem{
 
             
             // Getting the latest message
-            db.collection("chats").document(qDocumentSnapshot.documentID).collection("chat").order(by: "timestamp").limit(to: 2).getDocuments{
+            db.collection("chats").document(qDocumentSnapshot.documentID).collection("chat").order(by: "timestamp", descending: true).limit(to: 1).getDocuments{
                 (snap, err) in
                 
                 if let err = err{
@@ -100,6 +128,8 @@ class ChatListItem{
                 }
             }
         }
+        
+        
     }
     
     
