@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import CoreLocation
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var theTableView: UITableView!
@@ -20,9 +21,22 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let currentUser = Auth.auth().currentUser!.uid
     
+    let locManager = CLLocationManager()
+    
+    var currentLocation: CLLocation!
+    
     func initView(){
         theTableView.delegate = self
         theTableView.dataSource = self
+        
+        locManager.requestWhenInUseAuthorization()
+
+        if
+           CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+           CLLocationManager.authorizationStatus() ==  .authorizedAlways
+        {
+            currentLocation = locManager.location
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,15 +83,38 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         myCell.locationMarker.image? = templateImage!
         myCell.locationMarker.tintColor = UIColor.label
         
-
-        if let location = events[indexPath.item].get("address") as? String {
-//                myCell.distance.text = location
-            myCell.distance.text = "20 mi."
-        }else{
-//                print("Couldn't parse location")
-//                myCell.userNameLabel.text = nil
+        
+        if let location = events[indexPath.item].get("location") as? GeoPoint {
+            let dist = distance(lat1: self.currentLocation.coordinate.latitude, lon1: self.currentLocation.coordinate.longitude, lat2: location.latitude, lon2: location.longitude)
+            
+            myCell.distance.text = String(format:"%.1f mi.", dist)
         }
         
+        if let timeStamp = events[indexPath.item].get("date_time") as? Timestamp {
+            let date = timeStamp.dateValue()
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM/dd/yyyy"
+            let dateLabel = formatter.string(from: date)
+            
+            myCell.eventDate.text = dateLabel
+        }
+        
+        if let going = events[indexPath.item].get("going") as? [String] {
+            let numGoing = going.count
+                        
+            switch (numGoing) {
+            case _ where numGoing <= 5:
+                myCell.personIcon1.isHidden = true
+                myCell.personIcon2.isHidden = true
+                break
+            case _ where (numGoing > 5 && numGoing <= 11):
+                myCell.personIcon1.isHidden = true
+                break
+            default:
+                break
+            }
+        }
 
         myCell.bookmarkIcon.setImage(UIImage(systemName: "bookmark"), for: .normal)
         myCell.bookmarkIcon.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
@@ -221,6 +258,32 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
 
     }
+    
+    // The following was obtained from:
+    // https://www.geodatasource.com/developers/swift
+    
+    func deg2rad(deg:Double) -> Double {
+        return deg * Double.pi / 180
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///  This function converts radians to decimal degrees              ///
+    ///////////////////////////////////////////////////////////////////////
+    func rad2deg(rad:Double) -> Double {
+        return rad * 180.0 / Double.pi
+    }
+
+    func distance(lat1:Double, lon1:Double, lat2:Double, lon2:Double) -> Double {
+        let theta = lon1 - lon2
+        var dist = sin(deg2rad(deg: lat1)) * sin(deg2rad(deg: lat2)) + cos(deg2rad(deg: lat1)) * cos(deg2rad(deg: lat2)) * cos(deg2rad(deg: theta))
+        dist = acos(dist)
+        dist = rad2deg(rad: dist)
+        dist = dist * 60 * 1.1515
+        // In miles
+        dist = dist * 0.8684
+        return dist
+    }
+
     
     
     // MARK: - Navigation
