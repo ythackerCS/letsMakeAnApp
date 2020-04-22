@@ -87,7 +87,7 @@ class createEventFour: UIViewController {
                         storageRef.downloadURL(completion: { (url, error) in
 //                            print("Image URL: \((url?.absoluteString)!)”)
 //                            self.writeDatabaseCustomer(imageUrl: (url?.absoluteString)!)
-                            imageURL = url?.absoluteString as! String
+                            imageURL = url!.absoluteString
                             print(imageURL)
                             
                             //        let category = eventCategories[eventCategory.selectedRow(inComponent: 0)]

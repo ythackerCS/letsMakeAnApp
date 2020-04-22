@@ -115,6 +115,8 @@ class createEventThree: UIViewController, CLLocationManagerDelegate, UITextField
                    if let postalCode = self.placeMark.postalCode {
                        self.addressString = self.addressString + postalCode + " "
                    }
+                
+                self.addressOfEvent = self.addressString
                })
            }
        }
@@ -142,6 +144,7 @@ class createEventThree: UIViewController, CLLocationManagerDelegate, UITextField
                 }
                 // Use your location
                 self.longLatOfevent =  location.coordinate
+                self.addressOfEvent = self.eventLocation.text!
             }
         }
     }

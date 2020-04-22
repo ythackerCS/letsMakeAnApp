@@ -27,12 +27,14 @@ class EventDetailViewController: UIViewController {
     @IBOutlet var numberOfPeople: UILabel!
     @IBOutlet var bookmarked: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet var locationInfo: UILabel!
     
     @IBOutlet weak var descriptionLabel: UILabel!
     
     let locManager = CLLocationManager()
     
     var currentLocation: CLLocation!
+    var addressOfEvent: String!
     
     
     override func viewDidLoad() {
@@ -75,6 +77,13 @@ class EventDetailViewController: UIViewController {
         }else{
 //            print("Couldn't parse username")
         }
+        
+        if let address = event.get("address") as? String{
+        //            usernameLabel.text = username
+                    addressOfEvent = address
+                }else{
+        //            print("Couldn't parse username")
+                }
 
 
         if let location = event.get("location") as? GeoPoint {
@@ -155,13 +164,18 @@ class EventDetailViewController: UIViewController {
             
             if self.goingToEvent() {
                 self.joinButton.setTitle("Joined!", for: .normal)
+                self.locationInfo.text = self.addressOfEvent
                 self.joinButton.isEnabled = false
                 
             }
             
             if self.alreadyRequested() {
                 self.joinButton.setTitle("Requested!", for: .normal)
+                self.locationInfo.text = "Address will be avilable upon approval."
                 self.joinButton.isEnabled = false
+            }
+            else{
+                self.locationInfo.text = "Address will be avilable upon approval."
             }
             
         }
