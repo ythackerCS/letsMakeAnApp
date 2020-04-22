@@ -6,6 +6,9 @@
 //  Copyright © 2020 Alex Appel. All rights reserved.
 //
 
+
+//DEPRECATED WE ARE NOT USING THIS!
+
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		32711830241057E70049D827 /* UserAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3271182F241057E70049D827 /* UserAccountViewController.swift */; };
 		32711832241062CA0049D827 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32711831241062CA0049D827 /* AccountInfoViewController.swift */; };
+		32B20D38244FCDF000953874 /* createEventOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B20D37244FCDF000953874 /* createEventOneViewController.swift */; };
+		32B20D3A244FCE5F00953874 /* createEventTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B20D39244FCE5F00953874 /* createEventTwo.swift */; };
+		32B20D3E244FCED000953874 /* createEventThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B20D3D244FCED000953874 /* createEventThree.swift */; };
+		32B20D40244FCEEC00953874 /* createEventFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B20D3F244FCEEC00953874 /* createEventFour.swift */; };
 		32D0B820243AE0EF008F873F /* tabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0B81F243AE0EF008F873F /* tabBarControllerViewController.swift */; };
 		32D0B822243B0007008F873F /* CustomTabBarSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0B821243B0007008F873F /* CustomTabBarSize.swift */; };
 		A352819CAE90DE04AB99F70D /* Pods_lettuce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405F6FA3FEE7615153CD1875 /* Pods_lettuce.framework */; };
@@ -44,6 +48,10 @@
 		1518993A1D856420250AE455 /* Pods-lettuce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lettuce.release.xcconfig"; path = "Target Support Files/Pods-lettuce/Pods-lettuce.release.xcconfig"; sourceTree = "<group>"; };
 		3271182F241057E70049D827 /* UserAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountViewController.swift; sourceTree = "<group>"; };
 		32711831241062CA0049D827 /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
+		32B20D37244FCDF000953874 /* createEventOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createEventOneViewController.swift; sourceTree = "<group>"; };
+		32B20D39244FCE5F00953874 /* createEventTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createEventTwo.swift; sourceTree = "<group>"; };
+		32B20D3D244FCED000953874 /* createEventThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createEventThree.swift; sourceTree = "<group>"; };
+		32B20D3F244FCEEC00953874 /* createEventFour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createEventFour.swift; sourceTree = "<group>"; };
 		32D0B81F243AE0EF008F873F /* tabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarControllerViewController.swift; sourceTree = "<group>"; };
 		32D0B821243B0007008F873F /* CustomTabBarSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarSize.swift; sourceTree = "<group>"; };
 		405F6FA3FEE7615153CD1875 /* Pods_lettuce.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lettuce.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +162,10 @@
 				3271182F241057E70049D827 /* UserAccountViewController.swift */,
 				32711831241062CA0049D827 /* AccountInfoViewController.swift */,
 				FA284E5324248A1500BBC8FF /* MyEventsViewController.swift */,
+				32B20D37244FCDF000953874 /* createEventOneViewController.swift */,
+				32B20D39244FCE5F00953874 /* createEventTwo.swift */,
+				32B20D3D244FCED000953874 /* createEventThree.swift */,
+				32B20D3F244FCEEC00953874 /* createEventFour.swift */,
 				A724AA68242803E300C2EC1B /* ChatListViewController.swift */,
 				A724AA6A242804E700C2EC1B /* ChatCell.swift */,
 				A724AA6C242809E900C2EC1B /* ChatListItem.swift */,
@@ -279,12 +291,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32B20D40244FCEEC00953874 /* createEventFour.swift in Sources */,
+				32B20D3E244FCED000953874 /* createEventThree.swift in Sources */,
 				A7D283512422F18800AD677B /* Register2ViewController.swift in Sources */,
 				FAAC08492443DF2800B30974 /* EventCard2.swift in Sources */,
 				FA284E5424248A1500BBC8FF /* MyEventsViewController.swift in Sources */,
 				A724AA6D242809E900C2EC1B /* ChatListItem.swift in Sources */,
 				A724AA69242803E300C2EC1B /* ChatListViewController.swift in Sources */,
 				FA3F58B9243094E800B51C2C /* GoingTableViewController.swift in Sources */,
+				32B20D38244FCDF000953874 /* createEventOneViewController.swift in Sources */,
 				32D0B822243B0007008F873F /* CustomTabBarSize.swift in Sources */,
 				A724AA6B242804E700C2EC1B /* ChatCell.swift in Sources */,
 				FAA5205D23F9F32300D45CDA /* ProfileViewController.swift in Sources */,
@@ -305,6 +320,7 @@
 				FA32147123F8F8F4003A1B2C /* SceneDelegate.swift in Sources */,
 				FA509DC82403B20800807E33 /* EventCard.swift in Sources */,
 				FA509DC62403A74800807E33 /* FeedViewController.swift in Sources */,
+				32B20D3A244FCE5F00953874 /* createEventTwo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

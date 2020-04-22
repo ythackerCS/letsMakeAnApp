@@ -28,7 +28,7 @@ class tabBarControllerViewController: UITabBarController, UITabBarControllerDele
         for items in self.tabBar.items!{
             items.imageInsets = UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100)
             items.badgeColor = UIColor.systemRed
-            items.badgeValue = "1"
+//            items.badgeValue = "1"
         }
         
         

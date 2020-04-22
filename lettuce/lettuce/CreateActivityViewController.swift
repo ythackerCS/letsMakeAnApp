@@ -32,7 +32,7 @@ class CreateActivityViewController: UIViewController, UIPickerViewDataSource, UI
     let eventCategories:[String] = ["Party", "Outdoors", "Zoom", "LAN Party", "Board Games", "Chillin"]
     
     
-    @IBOutlet weak var titleText: UITextField!
+    @IBOutlet var titleText: UITextField!
     @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var eventDate: UIDatePicker!
     @IBOutlet weak var eventTime: UIDatePicker!
