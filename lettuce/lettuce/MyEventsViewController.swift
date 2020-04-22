@@ -225,17 +225,19 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
-        let requestedVC = segue.destination as? RequestedViewController
-        
-        if requestedVC != nil {
-            requestedVC!.event = events[selectedItemIndex]
+        if let requestedVC = segue.destination as? RequestedViewController {
+            requestedVC.event = events[selectedItemIndex]
         }
         
-        let goingVC = segue.destination as? GoingTableViewController
-        
-        if goingVC != nil {
-            goingVC!.event = events[selectedItemIndex]
+        if let goingVC = segue.destination as? GoingTableViewController {
+            goingVC.event = events[selectedItemIndex]
         }
+        
+        if let eventDetailVC = segue.destination as? EventDetailViewController {
+            eventDetailVC.event = events[selectedItemIndex]
+        }
+       
+        
         
         
     }

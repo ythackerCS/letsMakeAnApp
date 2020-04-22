@@ -37,6 +37,16 @@ class GoingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let myCell = theTableView.dequeueReusableCell(withIdentifier: "goingPersonDetails") as? PersonCard {
             
+            if let owner = event.get("owner") as? String {
+                if owner ==  self.goingList[indexPath.item].get("id") as? String {
+                    myCell.rejectBtn.isEnabled = false
+                }
+                else {
+                    myCell.rejectBtn.isEnabled = true
+                }
+            }
+            
+            
             myCell.userNameLabel.text = self.goingList[indexPath.item].get("username") as? String
             
             myCell.rejectBtn.addTarget(self, action: #selector(rejectUser(button:)), for: .touchUpInside)
@@ -144,57 +154,57 @@ class GoingTableViewController: UITableViewController {
     }
     
     
-//    func reloadEvents(){
-//        let db = Firestore.firestore()
-//
-//        goingList.removeAll()
-//
-//        let eventID = self.event.documentID
-//        print("eventID: \(eventID)")
-//
-//        let docRef = db.collection("events").document(eventID)
-//
-//        docRef.getDocument { (document, error) in
-//            if let document = document, document.exists {
-//                //                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-//                //                print("Document data: \(dataDescription)")
-//
-//                print(document.get("going") as! [String])
-//                print(document.get("username") as! String)
-//                print(document.get("asdf"))
-//                print(document.get("name"))
-//                print(document.get("description") as! String)
-//
-//                for userID in document.get("going") as! [String] {
-//                    print("________")
-//                    print(userID)
-//                    print("__________")
-//                    db.collection("users").whereField("id", isEqualTo: userID).getDocuments() { (querySnapshot, err) in
-//                        if let err = err {
-//                            print("Error getting documents: \(err)")
-//                        }
-//                        else {
-//                            for document in querySnapshot!.documents {
-//                                //                        print(document.data())
-//                                //                        print(document.get("username")!)
-//                                self.goingList.append(document)
-//                                //                        print(self.goingList)
-//
-//                            }
-//                        }
-//                        self.theTableView.reloadData()
-//
-//                    }
-//
-//                }
-//
-//            } else {
-//                print("Document does not exist")
-//            }
-//        }
-//
-        
-        
-        
-//    }
+    //    func reloadEvents(){
+    //        let db = Firestore.firestore()
+    //
+    //        goingList.removeAll()
+    //
+    //        let eventID = self.event.documentID
+    //        print("eventID: \(eventID)")
+    //
+    //        let docRef = db.collection("events").document(eventID)
+    //
+    //        docRef.getDocument { (document, error) in
+    //            if let document = document, document.exists {
+    //                //                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+    //                //                print("Document data: \(dataDescription)")
+    //
+    //                print(document.get("going") as! [String])
+    //                print(document.get("username") as! String)
+    //                print(document.get("asdf"))
+    //                print(document.get("name"))
+    //                print(document.get("description") as! String)
+    //
+    //                for userID in document.get("going") as! [String] {
+    //                    print("________")
+    //                    print(userID)
+    //                    print("__________")
+    //                    db.collection("users").whereField("id", isEqualTo: userID).getDocuments() { (querySnapshot, err) in
+    //                        if let err = err {
+    //                            print("Error getting documents: \(err)")
+    //                        }
+    //                        else {
+    //                            for document in querySnapshot!.documents {
+    //                                //                        print(document.data())
+    //                                //                        print(document.get("username")!)
+    //                                self.goingList.append(document)
+    //                                //                        print(self.goingList)
+    //
+    //                            }
+    //                        }
+    //                        self.theTableView.reloadData()
+    //
+    //                    }
+    //
+    //                }
+    //
+    //            } else {
+    //                print("Document does not exist")
+    //            }
+    //        }
+    //
+    
+    
+    
+    //    }
 }

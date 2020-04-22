@@ -248,5 +248,16 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         dist = dist * 0.8684
         return dist
     }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+
+        let eventDetailVC = segue.destination as! EventDetailViewController
+        eventDetailVC.event = events[selectedItemIndex]
+    }
 
 }
