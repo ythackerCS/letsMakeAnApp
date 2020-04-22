@@ -28,10 +28,10 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
         theTableView.dataSource = self
         
         locManager.requestWhenInUseAuthorization()
-
+        
         if
-           CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-           CLLocationManager.authorizationStatus() ==  .authorizedAlways
+            CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+                CLLocationManager.authorizationStatus() ==  .authorizedAlways
         {
             currentLocation = locManager.location
         }
@@ -115,6 +115,10 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
                 myCell.requestedButton.setTitle("Requests: \(numRequested)", for: .normal)
             }
             
+            myCell.deleteButton.addTarget(self, action: #selector(deleteEvent(button:)), for: .touchUpInside)
+            
+            myCell.deleteButton.tag = indexPath.row
+            
             return myCell
         }else{
             //            print("Couldn't convert to event card")
@@ -125,12 +129,13 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
+    
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         selectedItemIndex = indexPath.item
         return true
     }
     
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -144,6 +149,28 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidAppear(_ animated: Bool) {
         events.removeAll()
         loadEvents()
+    }
+    
+    @objc func deleteEvent(button: UIButton) {
+        let buttonTag = button.tag
+        
+        let documentID = events[buttonTag].documentID
+        
+        let db = Firestore.firestore()
+        
+        let docRef = db.collection("events").document(documentID)
+        
+        db.collection("events").document(documentID).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+                self.events.remove(at: buttonTag)
+                self.theTableView.reloadData()
+            }
+        }
+        
+        
     }
     
     
@@ -171,14 +198,14 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
     func deg2rad(deg:Double) -> Double {
         return deg * Double.pi / 180
     }
-
+    
     ///////////////////////////////////////////////////////////////////////
     ///  This function converts radians to decimal degrees              ///
     ///////////////////////////////////////////////////////////////////////
     func rad2deg(rad:Double) -> Double {
         return rad * 180.0 / Double.pi
     }
-
+    
     func distance(lat1:Double, lon1:Double, lat2:Double, lon2:Double) -> Double {
         let theta = lon1 - lon2
         var dist = sin(deg2rad(deg: lat1)) * sin(deg2rad(deg: lat2)) + cos(deg2rad(deg: lat1)) * cos(deg2rad(deg: lat2)) * cos(deg2rad(deg: theta))

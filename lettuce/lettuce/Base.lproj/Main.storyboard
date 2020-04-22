@@ -2300,6 +2300,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <connections>
                                             <outlet property="categoryIcon" destination="fSs-2K-SAN" id="NIV-KG-DVa"/>
+                                            <outlet property="deleteButton" destination="LSw-fx-WvM" id="Com-zX-6dz"/>
                                             <outlet property="distance" destination="BvU-Am-xdp" id="BNQ-Ah-feO"/>
                                             <outlet property="eventDate" destination="aqQ-ri-eu1" id="dQk-ei-QRc"/>
                                             <outlet property="eventTitle" destination="Jex-Hu-N0M" id="PrJ-yI-uej"/>

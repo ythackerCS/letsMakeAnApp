@@ -21,5 +21,6 @@ class EventCard2: UITableViewCell {
     @IBOutlet weak var locationMarker: UIImageView!
     @IBOutlet weak var requestedButton: UIButton!
     @IBOutlet weak var goingButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     var documentID: String!
 }
