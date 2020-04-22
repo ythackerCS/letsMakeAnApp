@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import CoreLocation
 
 class MyEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var image: UITabBarItem!
@@ -18,9 +19,22 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
     var events:[QueryDocumentSnapshot] = []
     var selectedItemIndex = 0
     
-    func initView(){
+    let locManager = CLLocationManager()
+    
+    var currentLocation: CLLocation!
+    
+    func initView() {
         theTableView.delegate = self
         theTableView.dataSource = self
+        
+        locManager.requestWhenInUseAuthorization()
+
+        if
+           CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+           CLLocationManager.authorizationStatus() ==  .authorizedAlways
+        {
+            currentLocation = locManager.location
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,60 +42,82 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let myCell = theTableView.dequeueReusableCell(withIdentifier: "eventDetails") as? EventCard{
+        if let myCell = theTableView.dequeueReusableCell(withIdentifier: "eventDetails") as? EventCard2 {
             
             if let title = events[indexPath.item].get("name") as? String{
                 myCell.eventTitle.text = title
             }else{
-//                print("Couldn't parse title")
+                //                print("Couldn't parse title")
             }
             
-            if let mp_url = events[indexPath.item].get("photos_url") as? String{
-                if let mainPictureActualURL = URL(string: mp_url){
-                    let mainPictureData = try? Data(contentsOf: mainPictureActualURL)
-                    if let data = mainPictureData{
-                        let mainPictureImage = UIImage(data: data)
-                        myCell.eventImage.image = mainPictureImage
-                        myCell.eventImage.contentMode = .scaleAspectFill
-                        myCell.noImgLabel.isHidden = true
-                    }
-                    else {
-                        myCell.eventImage.image = nil
-                        myCell.noImgLabel.isHidden = false
+            myCell.categoryIcon.image = nil
+            if let categoryIconURL = events[indexPath.item].get("photos_url") as? String,
+                let categoryIconActualURL = URL(string: categoryIconURL) {
+                
+                DispatchQueue.global(qos: .background).async {
+                    // fetch image on background thread
+                    if let categoryIconData = try? Data(contentsOf: categoryIconActualURL) {
+                        DispatchQueue.main.async {
+                            // update image on main thread
+                            let categoryIcon = UIImage(data: categoryIconData)
+                            myCell.categoryIcon.image = categoryIcon
+                            myCell.categoryIcon.contentMode = .scaleAspectFill
+                        }
                     }
                 }
-            }else{
-                myCell.noImgLabel.isHidden = false
-                myCell.eventImage.image = nil
-//                print("Couldn't parse url")
             }
             
-            if let description = events[indexPath.item].get("description") as? String{
-                myCell.descriptionLabel.text = description
-            }else{
-//                print("Couldn't parse description")
-            }
+            myCell.locationMarker.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/6)
+            //            myCell.locationMarker.tintColor = UIColor.label
             
-            if let username = events[indexPath.item].get("username") as? String{
-                myCell.userNameLabel.text = username
-            }else{
-//                print("Couldn't parse username")
-            }
+            let templateImage = myCell.locationMarker?.image?.withRenderingMode(.alwaysTemplate)
+            myCell.locationMarker.image? = templateImage!
+            myCell.locationMarker.tintColor = UIColor.label
             
-            if let location = events[indexPath.item].get("location") as? String{
+            
+            if let location = events[indexPath.item].get("location") as? GeoPoint {
+                let dist = distance(lat1: self.currentLocation.coordinate.latitude, lon1: self.currentLocation.coordinate.longitude, lat2: location.latitude, lon2: location.longitude)
                 
-                myCell.location.text = location
-            }else{
-//                print("Couldn't parse location")
+                myCell.distance.text = String(format:"%.1f mi.", dist)
             }
             
+            if let timeStamp = events[indexPath.item].get("date_time") as? Timestamp {
+                let date = timeStamp.dateValue()
+                
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MM/dd/yyyy"
+                let dateLabel = formatter.string(from: date)
+                
+                myCell.eventDate.text = dateLabel
+            }
             
-            myCell.descriptionLabel.isScrollEnabled = false
-            myCell.descriptionLabel.isEditable = false
+            if let going = events[indexPath.item].get("going") as? [String] {
+                let numGoing = going.count
+                
+                switch (numGoing) {
+                case _ where numGoing <= 5:
+                    myCell.personIcon1.isHidden = true
+                    myCell.personIcon2.isHidden = true
+                    break
+                case _ where (numGoing > 5 && numGoing <= 11):
+                    myCell.personIcon1.isHidden = true
+                    break
+                default:
+                    break
+                }
+                
+                myCell.goingButton.setTitle("Going: \(numGoing)", for: .normal)
+            }
+            
+            if let requested = events[indexPath.item].get("requested") as? [String] {
+                let numRequested = requested.count
+                
+                myCell.requestedButton.setTitle("Requests: \(numRequested)", for: .normal)
+            }
             
             return myCell
         }else{
-//            print("Couldn't convert to event card")
+            //            print("Couldn't convert to event card")
         }
         
         return UITableViewCell(style: .default, reuseIdentifier: "myCell")
@@ -94,16 +130,14 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
         return true
     }
     
-    
-    
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initView()
-//        loadEvents()
-//        print(events.count)
-
+        //        loadEvents()
+        //        print(events.count)
+        
     }
     
     
@@ -131,6 +165,31 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    // The following was obtained from:
+    // https://www.geodatasource.com/developers/swift
+    
+    func deg2rad(deg:Double) -> Double {
+        return deg * Double.pi / 180
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///  This function converts radians to decimal degrees              ///
+    ///////////////////////////////////////////////////////////////////////
+    func rad2deg(rad:Double) -> Double {
+        return rad * 180.0 / Double.pi
+    }
+
+    func distance(lat1:Double, lon1:Double, lat2:Double, lon2:Double) -> Double {
+        let theta = lon1 - lon2
+        var dist = sin(deg2rad(deg: lat1)) * sin(deg2rad(deg: lat2)) + cos(deg2rad(deg: lat1)) * cos(deg2rad(deg: lat2)) * cos(deg2rad(deg: theta))
+        dist = acos(dist)
+        dist = rad2deg(rad: dist)
+        dist = dist * 60 * 1.1515
+        // In miles
+        dist = dist * 0.8684
+        return dist
+    }
+    
     
     // MARK: - Navigation
     
@@ -153,6 +212,6 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
         
         
     }
-       
+    
     
 }
