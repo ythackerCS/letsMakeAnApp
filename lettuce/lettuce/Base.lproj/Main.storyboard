@@ -1689,16 +1689,6 @@
                                                     <constraint firstAttribute="height" constant="2.3300000000000001" id="sRt-ET-Bpq"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="center" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6E-xT-TI0">
-                                                <rect key="frame" x="339" y="13" width="21" height="29.5"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="favorited"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <state key="normal" image="bookmark" catalog="system">
-                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                                </state>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mountain Biking" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3c-7Y-c4V">
                                                 <rect key="frame" x="40" y="45.5" width="226" height="33.5"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="eventTitle"/>
@@ -1916,7 +1906,6 @@
                                             <constraint firstItem="oWR-IB-m4k" firstAttribute="leading" secondItem="BBq-SY-pcx" secondAttribute="leading" constant="45" id="XCC-WO-gLd"/>
                                             <constraint firstItem="rCz-m0-JgA" firstAttribute="leading" secondItem="BBq-SY-pcx" secondAttribute="leading" constant="57" id="YAC-PW-cZg"/>
                                             <constraint firstItem="Gd5-UM-rq2" firstAttribute="top" secondItem="54b-Jt-JzR" secondAttribute="bottom" constant="15" id="YNE-fq-Ztw"/>
-                                            <constraint firstAttribute="trailing" secondItem="p6E-xT-TI0" secondAttribute="trailing" constant="15" id="YRp-nh-AN4"/>
                                             <constraint firstItem="Zbv-2J-WGR" firstAttribute="leading" secondItem="BBq-SY-pcx" secondAttribute="leading" constant="57" id="ZmN-XV-Enw"/>
                                             <constraint firstItem="ObB-jk-eqN" firstAttribute="top" secondItem="Keb-ci-O3R" secondAttribute="bottom" constant="20" id="bmV-Mh-wsJ"/>
                                             <constraint firstItem="ruu-Q8-Bsp" firstAttribute="leading" secondItem="Ui7-Tt-1Ea" secondAttribute="trailing" constant="43.5" id="cJd-eR-67D"/>
@@ -1927,7 +1916,6 @@
                                             <constraint firstItem="Zbv-2J-WGR" firstAttribute="top" secondItem="rCz-m0-JgA" secondAttribute="bottom" constant="12" id="j65-Z3-fHD"/>
                                             <constraint firstAttribute="trailing" secondItem="Keb-ci-O3R" secondAttribute="trailing" constant="40" id="kR2-L6-FfM"/>
                                             <constraint firstItem="Ui7-Tt-1Ea" firstAttribute="leading" secondItem="BM2-92-8tG" secondAttribute="trailing" constant="1" id="kRA-Fz-gmu"/>
-                                            <constraint firstItem="p6E-xT-TI0" firstAttribute="top" secondItem="BBq-SY-pcx" secondAttribute="top" constant="13" id="m3X-HM-P3S"/>
                                             <constraint firstAttribute="trailing" secondItem="oeb-6Z-CCj" secondAttribute="trailing" constant="40" id="mdK-nH-Tt5"/>
                                             <constraint firstItem="ObB-jk-eqN" firstAttribute="leading" secondItem="BBq-SY-pcx" secondAttribute="leading" constant="40" id="o2h-0h-4Gj"/>
                                             <constraint firstItem="54b-Jt-JzR" firstAttribute="leading" secondItem="xWf-hf-QzD" secondAttribute="trailing" constant="1" id="oqb-PT-CyT"/>
@@ -1961,7 +1949,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="6h1-RR-mgD"/>
                     <connections>
-                        <outlet property="bookmarked" destination="p6E-xT-TI0" id="9iI-2J-z2N"/>
                         <outlet property="descriptionLabel" destination="l2E-kj-2HK" id="d4c-9m-Igb"/>
                         <outlet property="eventTitle" destination="a3c-7Y-c4V" id="Zwz-zq-IMP"/>
                         <outlet property="joinButton" destination="Gd5-UM-rq2" id="WgT-Mu-SMC"/>
