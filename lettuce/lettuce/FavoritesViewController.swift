@@ -79,9 +79,12 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             myCell.locationMarker.tintColor = UIColor.label
             
             if let location = events[indexPath.item].get("location") as? GeoPoint {
-                let dist = distance(lat1: self.currentLocation.coordinate.latitude, lon1: self.currentLocation.coordinate.longitude, lat2: location.latitude, lon2: location.longitude)
                 
-                myCell.distance.text = String(format:"%.1f mi.", dist)
+                if let myCurrentLocation = self.currentLocation {
+                    let dist = distance(lat1: myCurrentLocation.coordinate.latitude, lon1: myCurrentLocation.coordinate.longitude, lat2: location.latitude, lon2: location.longitude)
+                    
+                    myCell.distance.text = String(format:"%.1f mi.", dist)
+                }
             }
             
             if let timeStamp = events[indexPath.item].get("date_time") as? Timestamp {
@@ -161,23 +164,25 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
-                        let favoritedEventsList = document.get("favoritedEventsList") as! [String]
-                        
-                        for event in favoritedEventsList {
-                            
-                            let docRef = db.collection("events").document(event)
-                            
-                            docRef.getDocument { (snapshot, err) in
-                                if let err = err {
-                                    print("Error getting documents: \(err)")
+                        if let favoritedEventsList = document.get("favoritedEventsList") as? [String] {
+                            for event in favoritedEventsList {
+                                
+                                let docRef = db.collection("events").document(event)
+                                
+                                docRef.getDocument { (snapshot, err) in
+                                    if let err = err {
+                                        print("Error getting documents: \(err)")
+                                    }
+                                    else {
+                                        self.events.append(snapshot!)
+                                    }
+                                    self.theTableView.reloadData()
                                 }
-                                else {
-                                    self.events.append(snapshot!)
-                                }
-                                self.theTableView.reloadData()
+                                
                             }
-                            
                         }
+                        
+
                         
                     }
                 }

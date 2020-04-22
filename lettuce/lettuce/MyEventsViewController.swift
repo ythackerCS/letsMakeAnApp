@@ -76,9 +76,12 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
             
             
             if let location = events[indexPath.item].get("location") as? GeoPoint {
-                let dist = distance(lat1: self.currentLocation.coordinate.latitude, lon1: self.currentLocation.coordinate.longitude, lat2: location.latitude, lon2: location.longitude)
-                
-                myCell.distance.text = String(format:"%.1f mi.", dist)
+
+                if let myCurrentLocation = self.currentLocation {
+                    let dist = distance(lat1: myCurrentLocation.coordinate.latitude, lon1: myCurrentLocation.coordinate.longitude, lat2: location.latitude, lon2: location.longitude)
+                    
+                    myCell.distance.text = String(format:"%.1f mi.", dist)
+                }
             }
             
             if let timeStamp = events[indexPath.item].get("date_time") as? Timestamp {

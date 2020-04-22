@@ -79,9 +79,11 @@ class EventDetailViewController: UIViewController {
 
 
         if let location = event.get("location") as? GeoPoint {
-            let dist = distance(lat1: self.currentLocation.coordinate.latitude, lon1: self.currentLocation.coordinate.longitude, lat2: location.latitude, lon2: location.longitude)
-            
-            locationLabel.text = String(format:"%.1f mi.", dist)
+            if let myCurrentLocation = self.currentLocation {
+                let dist = distance(lat1: myCurrentLocation.coordinate.latitude, lon1: myCurrentLocation.coordinate.longitude, lat2: location.latitude, lon2: location.longitude)
+                
+                locationLabel.text = String(format:"%.1f mi.", dist)
+            }
         }else{
 //            print("Couldn't parse location")
         }
