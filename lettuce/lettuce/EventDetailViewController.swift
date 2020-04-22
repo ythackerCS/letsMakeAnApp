@@ -60,30 +60,22 @@ class EventDetailViewController: UIViewController {
         
         if let title = event.get("name") as? String {
             eventTitle.text = title
-        }else{
-//            print("Couldn't parse title for Event")
+            eventTitle.adjustsFontSizeToFitWidth = true
+            eventTitle.minimumScaleFactor = 0.5
         }
-        
         
         if let description = event.get("description") as? String{
             descriptionLabel.text = description
-        }else{
-//            print("Couldn't parse description")
         }
         
         if let username = event.get("username") as? String{
 //            usernameLabel.text = username
             profileButton.setTitle(username, for: .normal)
-        }else{
-//            print("Couldn't parse username")
         }
         
-        if let address = event.get("address") as? String{
-        //            usernameLabel.text = username
-                    addressOfEvent = address
-                }else{
-        //            print("Couldn't parse username")
-                }
+        if let address = event.get("address") as? String {
+            addressOfEvent = address
+        }
 
 
         if let location = event.get("location") as? GeoPoint {
@@ -153,6 +145,9 @@ class EventDetailViewController: UIViewController {
         
         let docRef = db.collection("events").document(event.documentID)
         
+        self.locationInfo.adjustsFontSizeToFitWidth = true
+        self.locationInfo.minimumScaleFactor = 0.5
+        
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
 //                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
@@ -169,13 +164,13 @@ class EventDetailViewController: UIViewController {
                 
             }
             
-            if self.alreadyRequested() {
+            else if self.alreadyRequested() {
                 self.joinButton.setTitle("Requested!", for: .normal)
-                self.locationInfo.text = "Address will be avilable upon approval."
+                self.locationInfo.text = "Address will be available upon approval."
                 self.joinButton.isEnabled = false
             }
             else{
-                self.locationInfo.text = "Address will be avilable upon approval."
+                self.locationInfo.text = "Address will be available upon approval."
             }
             
         }

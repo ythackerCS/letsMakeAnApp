@@ -29,6 +29,7 @@ class createEventFour: UIViewController {
     var longLatOfevent4: CLLocationCoordinate2D = CLLocationCoordinate2D.init()
     var eventDate4: Date = Date.init()
     var school = ""
+    var imageURL = ""
     
     let db = Firestore.firestore()
     let currentUser = (Auth.auth().currentUser)!
@@ -58,23 +59,42 @@ class createEventFour: UIViewController {
         }
     }
     
-    func handleAddActivity() {
-        // Get a reference to the storage service using the default Firebase App
-        let storage = Storage.storage()
+    func uploadToDatabase() {
+        // Add a new document with a generated ID
+        var ref: DocumentReference? = nil
         
-        guard let data = eventImage4.jpegData(compressionQuality: 1.0) else {
-            print("Something went wrong")
-            return
+        ref = self.db.collection("events").addDocument(data: [
+            "date_time": self.eventDate4,
+            "category": "red",
+            "location": GeoPoint(latitude: self.longLatOfevent4.latitude, longitude: self.longLatOfevent4.longitude),
+            "address": self.addressOfEvent4,
+            "name": self.eventTitle4,
+            "description": self.eventDescription4,
+            "owner": self.currentUser.uid,
+            "photos_url": self.imageURL,
+            "school": self.school,
+            "needApproval": self.requireApproval.isOn,
+            "username": self.currentUser.displayName!,
+            "requested": [],
+            "going": [self.currentUser.uid],
+            //               "expected": Int(expectedNumberOfPeople.text!)!
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
         }
+    }
+    
+    func handleAddActivity() {
+        
         
         let imageName = UUID().uuidString
         
-        let filePath = "images"
         let storageRef = Storage.storage().reference().child(imageName)
-        
-        var imageURL = ""
-        
-        if let uploadData = eventImage4.pngData(){
+                
+        if let uploadData = eventImage4.pngData() {
             storageRef.putData(uploadData, metadata: nil
                 , completion: { (metadata, error) in
 //                    self.hideActivityIndicator(view: self.view)
@@ -87,38 +107,17 @@ class createEventFour: UIViewController {
                         storageRef.downloadURL(completion: { (url, error) in
 //                            print("Image URL: \((url?.absoluteString)!)”)
 //                            self.writeDatabaseCustomer(imageUrl: (url?.absoluteString)!)
-                            imageURL = url!.absoluteString
-                            print(imageURL)
-                            
-                            //        let category = eventCategories[eventCategory.selectedRow(inComponent: 0)]
-                            // Add a new document with a generated ID
-                            var ref: DocumentReference? = nil
-                            
-                            ref = self.db.collection("events").addDocument(data: [
-                                "date_time": self.eventDate4,
-                                "category": "red",
-                                "location": GeoPoint(latitude: self.longLatOfevent4.latitude, longitude: self.longLatOfevent4.longitude),
-                                "address": self.addressOfEvent4,
-                                "name": self.eventTitle4,
-                                "description": self.eventDescription4,
-                                "owner": self.currentUser.uid,
-                                "photos_url": imageURL,
-                                "school": self.school,
-                                "needApproval": self.requireApproval.isOn,
-                                "username": self.currentUser.displayName!,
-                                "requested": [],
-                                "going": [self.currentUser.uid],
-                                //               "expected": Int(expectedNumberOfPeople.text!)!
-                            ]) { err in
-                                if let err = err {
-                                    print("Error adding document: \(err)")
-                                } else {
-                                    print("Document added with ID: \(ref!.documentID)")
-                                }
-                            }
-                            
+                            self.imageURL = url!.absoluteString
+                            self.uploadToDatabase()
                         })
-                    }})
+                    }
+                    
+            }
+            
+        )}
+        else {
+            self.imageURL = "https://firebasestorage.googleapis.com/v0/b/lettuce-7c717.appspot.com/o/No%20Image.png?alt=media&token=9903035d-39de-49aa-b2a1-eaba419adb47"
+            uploadToDatabase()
         }
         
     }
