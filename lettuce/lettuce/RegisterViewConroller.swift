@@ -11,18 +11,18 @@ import FirebaseAuth
 import FirebaseFirestore
 
 
-class RegisterViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        universityList.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return universityList[row]
-    }
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        universityList.count
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return universityList[row]
+//    }
     
     
     @IBOutlet weak var firstNameText: UITextField!
@@ -46,8 +46,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIPickerVie
     }
     
     func initView(){
-        universityPicker.delegate = self
-        universityPicker.dataSource = self
+//        universityPicker.delegate = self
+//        universityPicker.dataSource = self
     }
     
 
@@ -61,7 +61,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIPickerVie
             register2VC.lastNameText = self.lastNameText.text
             register2VC.usernameText = self.usernameText.text
             register2VC.emailText = self.emailText.text
-            register2VC.universityName = universityList[self.universityPicker.selectedRow(inComponent: 0)]
+//            register2VC.universityName = universityList[self.universityPicker.selectedRow(inComponent: 0)]
         }
      
     }

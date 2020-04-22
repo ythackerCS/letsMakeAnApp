@@ -55,7 +55,7 @@ class Register2ViewController: UIViewController, UITextFieldDelegate {
         guard let username = usernameText else { return }
         guard let email = emailText else { return }
         guard let password = passwordText.text else { return }
-        guard let university = universityName else { return }
+//        guard let university = universityName else { return }
         let date = dobPicker.date
         
         // Lettuce get this fella registered
@@ -73,8 +73,8 @@ class Register2ViewController: UIViewController, UITextFieldDelegate {
                     "firstName": lastName,
                     "lastName": firstName,
                     "email": email,
-                    "dob": date,
-                    "university": university
+                    "dob": date
+//                    "university": university
                 ]) { err in
                     if let err = err {
                         print("Error adding document: \(err)")
