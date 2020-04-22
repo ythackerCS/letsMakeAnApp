@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import CoreLocation
 
 class EventDetailViewController: UIViewController {
     
@@ -16,13 +17,22 @@ class EventDetailViewController: UIViewController {
 
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet var tags: UICollectionView!
-    @IBOutlet weak var usernameLabel: UILabel!
+//    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var profileButton: UIButton!
+    
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UITextView!
+//    @IBOutlet weak var descriptionLabel: UITextView!
     @IBOutlet weak var mpImageView: UIImageView!
     @IBOutlet weak var joinButton: UIButton!
     @IBOutlet var numberOfPeople: UILabel!
     @IBOutlet var bookmarked: UIButton!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    let locManager = CLLocationManager()
+    
+    var currentLocation: CLLocation!
     
     
     override func viewDidLoad() {
@@ -30,10 +40,23 @@ class EventDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         initView()
         reloadButtons()
+
+        
     }
     
-    func initView(){
-        if let title = event.get("name") as? String{
+    func initView() {
+        
+        
+        locManager.requestWhenInUseAuthorization()
+
+        if
+           CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+           CLLocationManager.authorizationStatus() ==  .authorizedAlways
+        {
+            currentLocation = locManager.location
+        }
+        
+        if let title = event.get("name") as? String {
             eventTitle.text = title
         }else{
 //            print("Couldn't parse title for Event")
@@ -47,21 +70,41 @@ class EventDetailViewController: UIViewController {
         }
         
         if let username = event.get("username") as? String{
-            usernameLabel.text = username
+//            usernameLabel.text = username
+            profileButton.setTitle(username, for: .normal)
         }else{
 //            print("Couldn't parse username")
         }
-        if let location = event.get("location") as? String{
-            locationLabel.text = location
+
+
+        if let location = event.get("location") as? GeoPoint {
+            let dist = distance(lat1: self.currentLocation.coordinate.latitude, lon1: self.currentLocation.coordinate.longitude, lat2: location.latitude, lon2: location.longitude)
+            
+            locationLabel.text = String(format:"%.1f", dist)
         }else{
 //            print("Couldn't parse location")
         }
         
+        if let going = event.get("going") as? [String] {
+            let peopleNum = going.count
+            numberOfPeople.text = String(peopleNum)
+        }
         
-        descriptionLabel.isScrollEnabled = false
-        descriptionLabel.isEditable = false
+        if let timeStamp = event.get("date_time") as? Timestamp {
+            let date = timeStamp.dateValue()
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm MM/dd/yyyy"
+            let dateLabel = formatter.string(from: date)
+            
+            timeLabel.text = dateLabel
+        }
         
-        if let ei_url = event.get("photos_url") as? String{
+        
+//        descriptionLabel.isScrollEnabled = false
+//        descriptionLabel.isEditable = false
+        
+        if let ei_url = event.get("photos_url") as? String {
             let eventImageActualURL = URL(string: ei_url)
             if let url = eventImageActualURL {
                 let mainPictureData = try? Data(contentsOf: url)
@@ -174,6 +217,38 @@ class EventDetailViewController: UIViewController {
         }
         return false
     }
+    
+    @IBAction func takeToProfile(_ sender: Any) {
+        // take user to the profile of the user that created the event
+        
+    }
+    
+    
+    // The following was obtained from:
+    // https://www.geodatasource.com/developers/swift
+    
+    func deg2rad(deg:Double) -> Double {
+        return deg * Double.pi / 180
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///  This function converts radians to decimal degrees              ///
+    ///////////////////////////////////////////////////////////////////////
+    func rad2deg(rad:Double) -> Double {
+        return rad * 180.0 / Double.pi
+    }
+
+    func distance(lat1:Double, lon1:Double, lat2:Double, lon2:Double) -> Double {
+        let theta = lon1 - lon2
+        var dist = sin(deg2rad(deg: lat1)) * sin(deg2rad(deg: lat2)) + cos(deg2rad(deg: lat1)) * cos(deg2rad(deg: lat2)) * cos(deg2rad(deg: theta))
+        dist = acos(dist)
+        dist = rad2deg(rad: dist)
+        dist = dist * 60 * 1.1515
+        // In miles
+        dist = dist * 0.8684
+        return dist
+    }
+
     
     /*
      // MARK: - Navigation
