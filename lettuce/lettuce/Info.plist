@@ -21,9 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>"Need it for allowing user to mark their current location"</string>
+	<string>Required to allow user to mark their current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>"Location needed"</string>
+	<string>Required to allow user to mark their current location</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -55,6 +55,10 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Required in order to use camera to take a photo to use as the cover image for your event</string>
+	<key> Privacy - Photo Library Usage Description</key>
+	<string>Required in order ot use the photo library to select a photo as the cover image for your event</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

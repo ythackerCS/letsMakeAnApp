@@ -470,7 +470,6 @@
         <!--CreateEvent-->
         <scene sceneID="hni-2t-Xw2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VwT-FG-UBV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController title="CreateEvent" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="Ai9-uB-aJp" customClass="CreateActivityViewController" customModule="lettuce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="TCX-fK-g6v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -648,6 +647,7 @@
                         <outlet property="titleText" destination="aVm-B9-0cj" id="ep1-Um-Jr3"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VwT-FG-UBV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4735" y="353"/>
         </scene>
@@ -681,7 +681,7 @@
                                 <rect key="frame" x="20" y="212" width="335" height="296"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <string key="text">Join us on a bike ride up and down Mt. Diablo. We depart 09:45 stat, so make sure your gear is ready by then. We'll be parking at Athenian High School, out front.</string>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -918,7 +918,7 @@
             <objects>
                 <viewController id="Hwt-NW-Wqq" customClass="createEventFour" customModule="lettuce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IeH-mj-gcT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Host an Event" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcU-eN-Y2I">
@@ -1020,7 +1020,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pyz-9k-2cQ">
-                                <rect key="frame" x="20" y="355" width="335" height="118"/>
+                                <rect key="frame" x="20" y="355" width="335" height="142"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dQX-Tb-ecC">
                                     <size key="itemSize" width="105" height="38"/>
@@ -1417,7 +1417,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jw4-Xu-CfR">
-                                <rect key="frame" x="73" y="533" width="229" height="32"/>
+                                <rect key="frame" x="73" y="557" width="229" height="32"/>
                                 <color key="backgroundColor" red="0.61578881740000002" green="0.8017092347" blue="0.63527756930000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="trS-i9-wHR"/>
@@ -1437,7 +1437,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiV-Ff-t0C">
-                                <rect key="frame" x="132" y="573" width="111" height="30"/>
+                                <rect key="frame" x="132" y="597" width="111" height="30"/>
                                 <state key="normal" title="Discard and Exit">
                                     <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 </state>
@@ -1603,7 +1603,7 @@
                             <constraint firstItem="aAf-gA-0Jf" firstAttribute="top" secondItem="ntI-R7-y7g" secondAttribute="bottom" constant="8" id="h9U-IU-WUo"/>
                             <constraint firstItem="T8E-S3-XWw" firstAttribute="trailing" secondItem="aAf-gA-0Jf" secondAttribute="trailing" constant="51" id="hEF-xL-BnX"/>
                             <constraint firstItem="ziI-o2-KS5" firstAttribute="leading" secondItem="T8E-S3-XWw" secondAttribute="leading" constant="20" id="itA-Nf-lNg"/>
-                            <constraint firstItem="vka-ep-E1c" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cG0-Gp-QNF" secondAttribute="bottom" constant="67" id="lTd-lj-vn7"/>
+                            <constraint firstItem="vka-ep-E1c" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cG0-Gp-QNF" secondAttribute="bottom" constant="50" id="lTd-lj-vn7"/>
                             <constraint firstItem="T8E-S3-XWw" firstAttribute="trailing" secondItem="cG0-Gp-QNF" secondAttribute="trailing" constant="104" id="lnn-9b-3rL"/>
                             <constraint firstItem="ziI-o2-KS5" firstAttribute="top" secondItem="7cj-CB-iYJ" secondAttribute="bottom" constant="8" id="n9F-Np-ZLk"/>
                             <constraint firstItem="T8E-S3-XWw" firstAttribute="trailing" secondItem="2vX-yC-P1Y" secondAttribute="trailing" constant="132" id="pWS-5w-YNp"/>
@@ -2741,7 +2741,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="UT0-dZ-e88"/>
-        <segue reference="Dbb-9c-p4c"/>
+        <segue reference="m9W-8A-4B1"/>
         <segue reference="JAP-Jn-LfL"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.61578881740000002" green="0.8017092347" blue="0.63527756930000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
