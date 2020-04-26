@@ -138,33 +138,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pl4-pY-HlJ">
-                                <rect key="frame" x="20" y="52" width="119" height="27"/>
+                                <rect key="frame" x="20" y="108" width="119" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" verticalHuggingPriority="253" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="bT8-TE-xaD">
-                                <rect key="frame" x="47" y="87" width="320" height="216"/>
+                                <rect key="frame" x="47" y="143" width="320" height="216"/>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBa-bz-fWZ">
-                                <rect key="frame" x="20" y="318" width="92" height="26.666666666666686"/>
+                                <rect key="frame" x="20" y="374" width="92" height="26.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrw-ak-nZx">
-                                <rect key="frame" x="20" y="396.66666666666669" width="173.66666666666666" height="26.333333333333314"/>
+                                <rect key="frame" x="20" y="452.66666666666669" width="173.66666666666666" height="26.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#security" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="80r-vS-unY">
-                                <rect key="frame" x="20.000000000000007" y="352.66666666666669" width="112.66666666666669" height="26"/>
+                                <rect key="frame" x="20.000000000000007" y="408.66666666666669" width="112.66666666666669" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#hellasecure" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="rcM-UH-4ex">
-                                <rect key="frame" x="20" y="431" width="144" height="30"/>
+                                <rect key="frame" x="20" y="487" width="144" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="b2E-cc-jaR"/>
                                 </constraints>
@@ -2739,11 +2739,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JoD-TE-5S2"/>
         <segue reference="UT0-dZ-e88"/>
         <segue reference="LKl-Be-NzV"/>
-        <segue reference="zlC-AX-ZvB"/>
-        <segue reference="Pc8-ES-ojS"/>
+        <segue reference="agQ-DE-Pm4"/>
+        <segue reference="JAP-Jn-LfL"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.61578881740000002" green="0.8017092347" blue="0.63527756930000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>

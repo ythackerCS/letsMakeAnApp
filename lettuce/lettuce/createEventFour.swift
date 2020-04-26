@@ -77,6 +77,7 @@ class createEventFour: UIViewController {
             "username": self.currentUser.displayName!,
             "requested": [],
             "going": [self.currentUser.uid],
+            "ageRestricted": self.ageRestriction.isOn
             //               "expected": Int(expectedNumberOfPeople.text!)!
         ]) { err in
             if let err = err {

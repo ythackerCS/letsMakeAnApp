@@ -212,12 +212,47 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         
         db.collection("events").getDocuments{ (querySnapshot, err) in
-            if let err = err{
+            if let err = err {
                 print("Error getting documents: \(err)")
-            }else{
-                for document in querySnapshot!.documents{
+            } else {
+                for document in querySnapshot!.documents {
+                    // select only events that are hosted by other users
                     if document.get("owner") as! String != self.currentUser {
-                        self.events.append(document)
+                        // if event has age restriction, only add it if user is over 21 years of age
+                        if document.get("ageRestricted") as? Bool ?? false {
+                            
+                            let userDocRef = self.db.collection("users").document(Auth.auth().currentUser!.uid)
+                            
+                            userDocRef.getDocument { (userDocument, error) in
+                                if let userDocument = userDocument, userDocument.exists {
+                                
+                                    if let dob = userDocument.get("dob") as? Timestamp {
+                                        let dobDate = dob.dateValue()
+
+                                        let calendar = Calendar.current
+                                        
+                                        // Replace the hour (time) of both dates with 00:00
+                                        let date1 = calendar.startOfDay(for: dobDate)
+                                        
+                                        let components = calendar.dateComponents([.year], from: date1, to: Date())
+                                        
+                                        if components.year! >= 21 {
+                                            self.events.append(document)
+                                        }
+                                        
+                                    }
+
+                                } else {
+                                    print("Document does not exist")
+                                }
+                            }
+                            
+                            
+                        }
+                        else {
+                            self.events.append(document)
+                        }
+                        
                     }
                     if let cat = document.get("category"){
                         print("cat: ")
