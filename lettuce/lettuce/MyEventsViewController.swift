@@ -11,6 +11,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 import CoreLocation
+import Kingfisher
 
 class MyEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var image: UITabBarItem!
@@ -56,14 +57,22 @@ class MyEventsViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 DispatchQueue.global(qos: .background).async {
                     // fetch image on background thread
-                    if let categoryIconData = try? Data(contentsOf: categoryIconActualURL) {
-                        DispatchQueue.main.async {
-                            // update image on main thread
-                            let categoryIcon = UIImage(data: categoryIconData)
-                            myCell.categoryIcon.image = categoryIcon
-                            myCell.categoryIcon.contentMode = .scaleAspectFill
-                        }
+                    let resource = ImageResource(downloadURL: categoryIconActualURL, cacheKey: categoryIconURL)
+                    
+                    DispatchQueue.main.async {
+                        // update image on main thread
+                        myCell.categoryIcon.kf.setImage(with: resource)
+                        myCell.categoryIcon.contentMode = .scaleAspectFill
                     }
+                    
+//                    if let categoryIconData = try? Data(contentsOf: categoryIconActualURL) {
+//                        DispatchQueue.main.async {
+//                            // update image on main thread
+//                            let categoryIcon = UIImage(data: categoryIconData)
+//                            myCell.categoryIcon.image = categoryIcon
+//                            myCell.categoryIcon.contentMode = .scaleAspectFill
+//                        }
+//                    }
                 }
             }
             

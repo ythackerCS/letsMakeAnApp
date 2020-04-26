@@ -93,8 +93,10 @@ class createEventFour: UIViewController {
         let imageName = UUID().uuidString
         
         let storageRef = Storage.storage().reference().child(imageName)
+        
+        let imageDataToUpload = eventImage4.jpegData(compressionQuality: 0.5)
                 
-        if let uploadData = eventImage4.pngData() {
+        if let uploadData = imageDataToUpload {
             storageRef.putData(uploadData, metadata: nil
                 , completion: { (metadata, error) in
 //                    self.hideActivityIndicator(view: self.view)
